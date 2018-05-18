@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonareSange", "DonareSange\DonareSange.csproj", "{B95FF8E4-0667-47A1-ABC5-43E21E0FEA70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonareSange.Tests", "DonareSange.Tests\DonareSange.Tests.csproj", "{9C39A08B-C672-4B93-9AAB-F58BCC1D34B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B95FF8E4-0667-47A1-ABC5-43E21E0FEA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95FF8E4-0667-47A1-ABC5-43E21E0FEA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95FF8E4-0667-47A1-ABC5-43E21E0FEA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95FF8E4-0667-47A1-ABC5-43E21E0FEA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C39A08B-C672-4B93-9AAB-F58BCC1D34B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C39A08B-C672-4B93-9AAB-F58BCC1D34B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C39A08B-C672-4B93-9AAB-F58BCC1D34B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C39A08B-C672-4B93-9AAB-F58BCC1D34B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BD58973-ACB4-4728-B15D-C8BCA4F73022}
+	EndGlobalSection
+EndGlobal
