@@ -58,11 +58,14 @@
     </table>
 
 </div>
-@Html.ActionLink("aa", "Create")
-@using (Html.BeginForm(FormMethod.Get))
-{
-    @Html.AntiForgeryToken()
+@Html.ActionLink("Create", "Create")
 
-    <input type="submit" value="Add" formmethod="@Url.Action("Create", "Doctor")" />
+
+
+@using (Html.BeginForm(FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    <input type="submit" value="add" formaction="@Url.Action("Create", "Doctor")"/>
 }
+
+
 

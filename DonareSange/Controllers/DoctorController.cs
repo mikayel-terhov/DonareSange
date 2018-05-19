@@ -36,23 +36,31 @@ namespace DonareSange.Controllers
 
             return data;
         }
-        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            Console.WriteLine("DoctorController -> Create()");
+            return View("Create");
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idClinica,  idCentru ,  state ,  trombocite,  globuleRosii,  plasma,  cantitate,  IDpacient")] Request request)
-        //public ActionResult Create()
         {
-            //if (ModelState.IsValid)
-            //{
-            //    requests.Add(request);
-            //    return RedirectToAction("Index");
-            //}
-            //Console.WriteLine(request.idCentru);
+            if (ModelState.IsValid)
+            {
+                requests.Add(request);
+                return RedirectToAction("AfterAdd");
+            }
+            
             return View();
         }
+
+        public ActionResult AfterAdd()
+        {
+
+            return View();
+        }
+
     }
 }
