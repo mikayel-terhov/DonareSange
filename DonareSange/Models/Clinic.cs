@@ -12,18 +12,23 @@ namespace DonareSange.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Doctor
+    public partial class Clinic
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Doctor()
+        public Clinic()
         {
+            this.BloodRequests = new HashSet<BloodRequest>();
             this.PersonalDetailsDoctors = new HashSet<PersonalDetailsDoctor>();
         }
     
-        public string DoctorId { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        public int ClinicId { get; set; }
+        public string name { get; set; }
+        public string contact { get; set; }
+        public Nullable<int> addressId { get; set; }
     
+        public virtual Address Address { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BloodRequest> BloodRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonalDetailsDoctor> PersonalDetailsDoctors { get; set; }
     }

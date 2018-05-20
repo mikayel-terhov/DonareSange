@@ -12,19 +12,19 @@ namespace DonareSange.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Doctor
+    public partial class Staff
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Doctor()
+        public Staff()
         {
-            this.PersonalDetailsDoctors = new HashSet<PersonalDetailsDoctor>();
+            this.PersonalDetailsStaffMembers = new HashSet<PersonalDetailsStaffMember>();
         }
     
-        public string DoctorId { get; set; }
+        public string StaffId { get; set; }
         public string username { get; set; }
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PersonalDetailsDoctor> PersonalDetailsDoctors { get; set; }
+        public virtual ICollection<PersonalDetailsStaffMember> PersonalDetailsStaffMembers { get; set; }
     }
 }

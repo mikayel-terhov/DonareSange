@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9dd220dc61f244b5a660e94f64241f6e" Name="Diagram1">
+        <EntityTypeShape EntityType="BloodDonationModel.Address" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.BloodRequest" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Centre" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Clinic" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Doctor" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Donation" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Donor" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.DonorPersonalDetail" Width="1.5" PointX="8" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.PersonalDetailsDoctor" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.PersonalDetailsStaffMember" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Staff" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BloodDonationModel.FK_Centre_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_Clinic_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_DonorPersonalDetails_Address" ManuallyRouted="true" >
+          <ConnectorPoint PointX="1.5" PointY="12.326396484375" />
+          <ConnectorPoint PointX="1.5" PointY="12.480325854492188" />
+          <ConnectorPoint PointX="1.0958333333333332" PointY="12.480325854492188" />
+          <ConnectorPoint PointX="1.0958333333333332" PointY="12.792849121093751" />
+          <ConnectorPoint PointX="0.7000000000000004" PointY="12.792849121093751" />
+          <ConnectorPoint PointX="0.7000000000000004" PointY="13.739889322916667" />
+          <ConnectorPoint PointX="1.8229186666666666" PointY="13.739889322916667" />
+          <ConnectorPoint PointX="1.9895853333333331" PointY="13.739889322916667" />
+          <ConnectorPoint PointX="5" PointY="13.739889322916667" />
+          <ConnectorPoint PointX="5" PointY="12.75" />
+          <ConnectorPoint PointX="5.041666666666667" PointY="12.75" />
+          <ConnectorPoint PointX="5.208333333333333" PointY="12.75" />
+          <ConnectorPoint PointX="7.625" PointY="12.75" />
+          <ConnectorPoint PointX="7.625" PointY="13.634348958333334" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="13.634348958333334" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="13.634348958333334" />
+          <ConnectorPoint PointX="8" PointY="13.634348958333334" />
+        </AssociationConnector>
+        <AssociationConnector Association="BloodDonationModel.FK_DonorPersonalDetails_Address1" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_BloodRequest_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_BloodRequest_Clinic" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_Donation_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_PersonalDetailsStaffMembers_Centre" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_PersonalDetailsDoctor_Clinic" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_PersonalDetailsDoctor_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_Donation_Donor" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_DonorPersonalDetails_Donor" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_PersonalDetailsStaffMembers_Staff" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
