@@ -6,4 +6,5 @@
 -In order to recreate the database on your server go to the Models folder in the project, there you can find a file named "Model.edmx", 
   open it
 -On the diagram, right click the mouse, and choose the "Generate database from model" option
-Should work in theory  ¯\_(ツ)_/¯ 
+Should work in theory 
+¯\_(ツ)_/¯ 
