@@ -192,7 +192,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\BloodRequestsController.cs" />
+=======
+    <Compile Include="Controllers\AddressesController.cs" />
+>>>>>>> 9daf60efc42af6dc921d6b7f05838fcb780a7406
     <Compile Include="Controllers\CentresController.cs" />
     <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -358,11 +362,19 @@
     <Content Include="Views\Centres\Details.cshtml" />
     <Content Include="Views\Centres\Edit.cshtml" />
     <Content Include="Views\Centres\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\BloodRequests\Create.cshtml" />
     <Content Include="Views\BloodRequests\Delete.cshtml" />
     <Content Include="Views\BloodRequests\Details.cshtml" />
     <Content Include="Views\BloodRequests\Edit.cshtml" />
     <Content Include="Views\BloodRequests\Index.cshtml" />
+=======
+    <Content Include="Views\Addresses\Create.cshtml" />
+    <Content Include="Views\Addresses\Delete.cshtml" />
+    <Content Include="Views\Addresses\Details.cshtml" />
+    <Content Include="Views\Addresses\Edit.cshtml" />
+    <Content Include="Views\Addresses\Index.cshtml" />
+>>>>>>> 9daf60efc42af6dc921d6b7f05838fcb780a7406
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
