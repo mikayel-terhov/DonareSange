@@ -1,0 +1,82 @@
+﻿@model DonareSange.Models.BloodRequest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BloodRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trombocite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trombocite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.plasma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.plasma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.globule_rosii)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.globule_rosii)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PacientCNP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PacientCNP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Centre.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Centre.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clinic.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clinic.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BloodRequestId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

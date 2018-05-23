@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BloodRequestsController.cs" />
     <Compile Include="Controllers\CentresController.cs" />
     <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -357,6 +358,11 @@
     <Content Include="Views\Centres\Details.cshtml" />
     <Content Include="Views\Centres\Edit.cshtml" />
     <Content Include="Views\Centres\Index.cshtml" />
+    <Content Include="Views\BloodRequests\Create.cshtml" />
+    <Content Include="Views\BloodRequests\Delete.cshtml" />
+    <Content Include="Views\BloodRequests\Details.cshtml" />
+    <Content Include="Views\BloodRequests\Edit.cshtml" />
+    <Content Include="Views\BloodRequests\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
