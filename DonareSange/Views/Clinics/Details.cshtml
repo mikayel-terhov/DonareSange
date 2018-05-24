@@ -1,0 +1,48 @@
+﻿@model DonareSange.Models.Clinic
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Clinic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.StreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.StreetName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.StrNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.StrNumber)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClinicId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -192,18 +192,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\BloodRequestsController.cs" />
-=======
     <Compile Include="Controllers\AddressesController.cs" />
->>>>>>> 9daf60efc42af6dc921d6b7f05838fcb780a7406
     <Compile Include="Controllers\CentresController.cs" />
+    <Compile Include="Controllers\ClinicsController.cs" />
     <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PersonalDetailsStaffMembersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -223,6 +223,7 @@
     <Compile Include="Models\BloodRequest.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BloodType.cs" />
     <Compile Include="Models\Centre.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -273,6 +274,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -362,19 +364,26 @@
     <Content Include="Views\Centres\Details.cshtml" />
     <Content Include="Views\Centres\Edit.cshtml" />
     <Content Include="Views\Centres\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\BloodRequests\Create.cshtml" />
     <Content Include="Views\BloodRequests\Delete.cshtml" />
     <Content Include="Views\BloodRequests\Details.cshtml" />
     <Content Include="Views\BloodRequests\Edit.cshtml" />
     <Content Include="Views\BloodRequests\Index.cshtml" />
-=======
     <Content Include="Views\Addresses\Create.cshtml" />
     <Content Include="Views\Addresses\Delete.cshtml" />
     <Content Include="Views\Addresses\Details.cshtml" />
     <Content Include="Views\Addresses\Edit.cshtml" />
     <Content Include="Views\Addresses\Index.cshtml" />
->>>>>>> 9daf60efc42af6dc921d6b7f05838fcb780a7406
+    <Content Include="Views\Clinics\Create.cshtml" />
+    <Content Include="Views\Clinics\Delete.cshtml" />
+    <Content Include="Views\Clinics\Details.cshtml" />
+    <Content Include="Views\Clinics\Edit.cshtml" />
+    <Content Include="Views\Clinics\Index.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMembers\Create.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMembers\Delete.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMembers\Details.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMembers\Edit.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMembers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
