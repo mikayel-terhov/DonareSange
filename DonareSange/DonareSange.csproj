@@ -281,7 +281,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\add.png" />
+    <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\4.png" />
+    <Content Include="Content\images\5.jpg" />
     <Content Include="DatabaseScripts\script.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -384,6 +386,7 @@
     <Content Include="Views\PersonalDetailsStaffMembers\Details.cshtml" />
     <Content Include="Views\PersonalDetailsStaffMembers\Edit.cshtml" />
     <Content Include="Views\PersonalDetailsStaffMembers\Index.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
