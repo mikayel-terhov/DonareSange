@@ -199,7 +199,8 @@
     <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PersonalDetailsStaffMembersController.cs" />
+    <Compile Include="Controllers\PersonalDetailsDoctorController.cs" />
+    <Compile Include="Controllers\PersonalDetailsStaffMemberController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -379,11 +380,16 @@
     <Content Include="Views\Clinics\Details.cshtml" />
     <Content Include="Views\Clinics\Edit.cshtml" />
     <Content Include="Views\Clinics\Index.cshtml" />
-    <Content Include="Views\PersonalDetailsStaffMembers\Create.cshtml" />
-    <Content Include="Views\PersonalDetailsStaffMembers\Delete.cshtml" />
-    <Content Include="Views\PersonalDetailsStaffMembers\Details.cshtml" />
-    <Content Include="Views\PersonalDetailsStaffMembers\Edit.cshtml" />
-    <Content Include="Views\PersonalDetailsStaffMembers\Index.cshtml" />
+    <Content Include="Views\PersonalDetailsDoctor\Create.cshtml" />
+    <Content Include="Views\PersonalDetailsDoctor\Delete.cshtml" />
+    <Content Include="Views\PersonalDetailsDoctor\Details.cshtml" />
+    <Content Include="Views\PersonalDetailsDoctor\Edit.cshtml" />
+    <Content Include="Views\PersonalDetailsDoctor\Index.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMember\Create.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMember\Delete.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMember\Details.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMember\Edit.cshtml" />
+    <Content Include="Views\PersonalDetailsStaffMember\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

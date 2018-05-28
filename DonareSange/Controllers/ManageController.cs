@@ -70,7 +70,8 @@ namespace DonareSange.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                UserType = GetUserType()
             };
             return View(model);
         }
@@ -372,7 +373,15 @@ namespace DonareSange.Controllers
             }
             return false;
         }
-
+        private string GetUserType()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                if (user.UserType != null) { return user.UserType; }
+            }
+            return null;
+        }
         public enum ManageMessageId
         {
             AddPhoneSuccess,
