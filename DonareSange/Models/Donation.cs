@@ -23,6 +23,11 @@ namespace DonareSange.Models
         public Nullable<double> trombocite { get; set; }
         public Nullable<double> plasma { get; set; }
         public Nullable<double> globule_rosii { get; set; }
+        public string blood_type { get; set; }
+        public Nullable<double> greutate { get; set; }
+        public Nullable<int> puls { get; set; }
+        public Nullable<bool> is_able_to_donate { get; set; }
+        public string specific_pacient_cnp { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Centre Centre { get; set; }

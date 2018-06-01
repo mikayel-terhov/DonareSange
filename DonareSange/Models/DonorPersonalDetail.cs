@@ -20,7 +20,7 @@ namespace DonareSange.Models
         public string lastname { get; set; }
         public string DonorId { get; set; }
         public Nullable<bool> isActive { get; set; }
-        public Nullable<int> DonorCNP { get; set; }
+        public string DonorCNP { get; set; }
         public string sex { get; set; }
         public Nullable<int> addressRegistred { get; set; }
         public Nullable<int> addressCurrent { get; set; }

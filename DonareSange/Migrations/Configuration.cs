@@ -11,14 +11,14 @@ namespace DonareSange.Migrations
     using System.Linq;
     using System.Collections.Generic;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DonareSange.Models.BloodDonationEntities1>
+    internal sealed class Configuration : DbMigrationsConfiguration<DonareSange.Models.BloodDonationEntities2>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DonareSange.Models.BloodDonationEntities1 context)
+        protected override void Seed(DonareSange.Models.BloodDonationEntities2 context)
         {
             //  This method will be called after migrating to the latest version.
 

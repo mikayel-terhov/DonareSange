@@ -12,7 +12,7 @@ namespace DonareSange.Controllers
 {
     public class DonationsController : Controller
     {
-        private BloodDonationEntities1 db = new BloodDonationEntities1();
+        private BloodDonationEntities2 db = new BloodDonationEntities2();
 
         // GET: Donations
         public ActionResult Index()

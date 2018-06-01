@@ -14,7 +14,7 @@ namespace DonareSange.Models
     
     public partial class PersonalDetailsStaffMember
     {
-        public decimal PersonalDetailsId { get; set; }
+        public int PersonalDetailsId { get; set; }
         public string email { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }

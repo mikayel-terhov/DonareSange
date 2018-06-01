@@ -23,6 +23,5 @@ namespace DonareSange.Models
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Clinic Clinic { get; set; }
-        public virtual Doctor Doctor { get; set; }
     }
 }

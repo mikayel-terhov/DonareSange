@@ -22,7 +22,7 @@ namespace DonareSange.Models
         public Nullable<double> plasma { get; set; }
         public Nullable<double> globule_rosii { get; set; }
         public Nullable<double> quantity { get; set; }
-        public int PacientCNP { get; set; }
+        public string PacientCNP { get; set; }
     
         public virtual Centre Centre { get; set; }
         public virtual Clinic Clinic { get; set; }

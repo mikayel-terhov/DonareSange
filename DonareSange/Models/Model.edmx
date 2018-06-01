@@ -92,7 +92,7 @@
           <Property Name="plasma" Type="float" />
           <Property Name="globule_rosii" Type="float" />
           <Property Name="quantity" Type="float" />
-          <Property Name="PacientCNP" Type="int" Nullable="false" />
+          <Property Name="PacientCNP" Type="varchar" MaxLength="13" />
         </EntityType>
         <EntityType Name="Centre">
           <Key>
@@ -133,6 +133,11 @@
           <Property Name="trombocite" Type="float" />
           <Property Name="plasma" Type="float" />
           <Property Name="globule_rosii" Type="float" />
+          <Property Name="blood_type" Type="varchar" MaxLength="120" />
+          <Property Name="greutate" Type="float" />
+          <Property Name="puls" Type="int" />
+          <Property Name="is_able_to_donate" Type="bit" />
+          <Property Name="specific_pacient_cnp" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Donor">
           <Key>
@@ -152,8 +157,8 @@
           <Property Name="lastname" Type="varchar" MaxLength="120" />
           <Property Name="DonorId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="isActive" Type="bit" />
-          <Property Name="DonorCNP" Type="int" />
-          <Property Name="sex" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="DonorCNP" Type="varchar" MaxLength="13" />
+          <Property Name="sex" Type="varchar" MaxLength="120" />
           <Property Name="addressRegistred" Type="int" />
           <Property Name="addressCurrent" Type="int" />
         </EntityType>
@@ -172,7 +177,7 @@
           <Key>
             <PropertyRef Name="PersonalDetailsId" />
           </Key>
-          <Property Name="PersonalDetailsId" Type="money" Nullable="false" />
+          <Property Name="PersonalDetailsId" Type="int" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="120" />
           <Property Name="firstname" Type="varchar" MaxLength="120" />
           <Property Name="lastname" Type="varchar" MaxLength="120" />
@@ -385,18 +390,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PersonalDetailsDoctor_Doctor">
-          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
-          <End Role="PersonalDetailsDoctor" Type="Self.PersonalDetailsDoctor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctor">
-              <PropertyRef Name="DoctorId" />
-            </Principal>
-            <Dependent Role="PersonalDetailsDoctor">
-              <PropertyRef Name="DoctorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PersonalDetailsStaffMembers_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="PersonalDetailsStaffMembers" Type="Self.PersonalDetailsStaffMembers" Multiplicity="*" />
@@ -512,10 +505,6 @@
             <End Role="Clinic" EntitySet="Clinic" />
             <End Role="PersonalDetailsDoctor" EntitySet="PersonalDetailsDoctor" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonalDetailsDoctor_Doctor" Association="Self.FK_PersonalDetailsDoctor_Doctor">
-            <End Role="Doctor" EntitySet="Doctor" />
-            <End Role="PersonalDetailsDoctor" EntitySet="PersonalDetailsDoctor" />
-          </AssociationSet>
           <AssociationSet Name="FK_PersonalDetailsStaffMembers_AspNetUsers" Association="Self.FK_PersonalDetailsStaffMembers_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="PersonalDetailsStaffMembers" EntitySet="PersonalDetailsStaffMembers" />
@@ -627,7 +616,7 @@
           <Property Name="plasma" Type="Double" />
           <Property Name="globule_rosii" Type="Double" />
           <Property Name="quantity" Type="Double" />
-          <Property Name="PacientCNP" Type="Int32" Nullable="false" />
+          <Property Name="PacientCNP" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Centre" Relationship="Self.FK_BloodRequest_Centre" FromRole="BloodRequest" ToRole="Centre" />
           <NavigationProperty Name="Clinic" Relationship="Self.FK_BloodRequest_Clinic" FromRole="BloodRequest" ToRole="Clinic" />
         </EntityType>
@@ -663,7 +652,6 @@
           <Property Name="DoctorId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PersonalDetailsDoctors" Relationship="Self.FK_PersonalDetailsDoctor_Doctor" FromRole="Doctor" ToRole="PersonalDetailsDoctor" />
         </EntityType>
         <EntityType Name="Donation">
           <Key>
@@ -678,6 +666,11 @@
           <Property Name="trombocite" Type="Double" />
           <Property Name="plasma" Type="Double" />
           <Property Name="globule_rosii" Type="Double" />
+          <Property Name="blood_type" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="greutate" Type="Double" />
+          <Property Name="puls" Type="Int32" />
+          <Property Name="is_able_to_donate" Type="Boolean" />
+          <Property Name="specific_pacient_cnp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Donation_AspNetUsers" FromRole="Donation" ToRole="AspNetUsers" />
           <NavigationProperty Name="Centre" Relationship="Self.FK_Donation_Centre" FromRole="Donation" ToRole="Centre" />
         </EntityType>
@@ -699,8 +692,8 @@
           <Property Name="lastname" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="DonorId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="isActive" Type="Boolean" />
-          <Property Name="DonorCNP" Type="Int32" />
-          <Property Name="sex" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DonorCNP" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="sex" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="addressRegistred" Type="Int32" />
           <Property Name="addressCurrent" Type="Int32" />
           <NavigationProperty Name="Address" Relationship="Self.FK_DonorPersonalDetails_Address" FromRole="DonorPersonalDetails" ToRole="Address" />
@@ -719,13 +712,12 @@
           <Property Name="ClinicId" Type="Int32" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_PersonalDetailsDoctor_AspNetUsers" FromRole="PersonalDetailsDoctor" ToRole="AspNetUsers" />
           <NavigationProperty Name="Clinic" Relationship="Self.FK_PersonalDetailsDoctor_Clinic" FromRole="PersonalDetailsDoctor" ToRole="Clinic" />
-          <NavigationProperty Name="Doctor" Relationship="Self.FK_PersonalDetailsDoctor_Doctor" FromRole="PersonalDetailsDoctor" ToRole="Doctor" />
         </EntityType>
         <EntityType Name="PersonalDetailsStaffMember">
           <Key>
             <PropertyRef Name="PersonalDetailsId" />
           </Key>
-          <Property Name="PersonalDetailsId" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PersonalDetailsId" Type="Int32" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="firstname" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="lastname" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
@@ -938,18 +930,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PersonalDetailsDoctor_Doctor">
-          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
-          <End Role="PersonalDetailsDoctor" Type="Self.PersonalDetailsDoctor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctor">
-              <PropertyRef Name="DoctorId" />
-            </Principal>
-            <Dependent Role="PersonalDetailsDoctor">
-              <PropertyRef Name="DoctorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PersonalDetailsStaffMembers_Staff">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="PersonalDetailsStaffMembers" Type="Self.PersonalDetailsStaffMember" Multiplicity="*" />
@@ -966,7 +946,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BloodDonationEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BloodDonationEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -1044,10 +1024,6 @@
             <End Role="Clinic" EntitySet="Clinics" />
             <End Role="PersonalDetailsDoctor" EntitySet="PersonalDetailsDoctors" />
           </AssociationSet>
-          <AssociationSet Name="FK_PersonalDetailsDoctor_Doctor" Association="Self.FK_PersonalDetailsDoctor_Doctor">
-            <End Role="Doctor" EntitySet="Doctors" />
-            <End Role="PersonalDetailsDoctor" EntitySet="PersonalDetailsDoctors" />
-          </AssociationSet>
           <AssociationSet Name="FK_PersonalDetailsStaffMembers_Staff" Association="Self.FK_PersonalDetailsStaffMembers_Staff">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="PersonalDetailsStaffMembers" EntitySet="PersonalDetailsStaffMembers" />
@@ -1062,7 +1038,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BloodDonationModelStoreContainer" CdmEntityContainer="BloodDonationEntities1">
+        <EntityContainerMapping StorageEntityContainer="BloodDonationModelStoreContainer" CdmEntityContainer="BloodDonationEntities2">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="BloodDonationModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1189,6 +1165,11 @@
                 <ScalarProperty Name="trombocite" ColumnName="trombocite" />
                 <ScalarProperty Name="plasma" ColumnName="plasma" />
                 <ScalarProperty Name="globule_rosii" ColumnName="globule_rosii" />
+                <ScalarProperty Name="blood_type" ColumnName="blood_type" />
+                <ScalarProperty Name="greutate" ColumnName="greutate" />
+                <ScalarProperty Name="puls" ColumnName="puls" />
+                <ScalarProperty Name="is_able_to_donate" ColumnName="is_able_to_donate" />
+                <ScalarProperty Name="specific_pacient_cnp" ColumnName="specific_pacient_cnp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
