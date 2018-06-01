@@ -153,16 +153,32 @@ namespace DonareSange.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType.ToString()};
                 var result = await UserManager.CreateAsync(user, model.Password);
+                var db = new BloodDonationEntities2();
+                var users = db.AspNetUsers;
+                string id = "";
+                foreach (AspNetUser u in users)
+                {
+                    if (u.Email == model.Email)
+                    {
+                        id = u.Id;
+                    }
+                }
+                if (model.UserType == UserTypes.DONOR)
+                {
+                    var personalDetails = new DonorPersonalDetail
+                    {
+                        DonorId = id,
+                        email = model.Email
+                    };
+                    db.DonorPersonalDetails.Add(personalDetails);
+                    db.SaveChanges();
+                }
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                   
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
