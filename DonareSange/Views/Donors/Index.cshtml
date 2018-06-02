@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<DonareSange.Models.Donor>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">Doneaza</a></li>
+            <li><a href="@Url.Action("Index", "Donations")">My Donations</a></li>
+
+        </ul>
+
+    </div>
+</nav>
+
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2 style="color:red">Conditii pentru donare:</h2>
+        <p>
+            - vârsta cuprinsă în intervalul <b>18-60</b> ani<br />
+            - greutate peste <b>50</b> kg<br />
+            - puls regulat, <b>60 - 100</b> bătăi/minut.<br />
+            - tensiune arterială sistolică între <b>100</b> şi <b>180</b> mmHg<br />
+            - să nu fi suferit în ultimele <b>6</b> luni intervenţii chirurgicale<br />
+            - femeile să nu fie: însărcinate, în perioada de lăuzie, în perioada menstruală<br />
+            - să nu fi consumat grăsimi sau băuturi alcoolice cu cel puţin <b>48</b> de ore înaintea donării<br />
+            - sa nu fii sub tratament pentru diferite afectiuni: hipertensiune,boli de inima,boli renale,boli psihice,boli hepatice,boli endocrine<br />
+
+        </p>
+
+
+    </div>
+
+    <div class="col-md-6">
+        <h2 style="color:red">Recomandari dupa donarea de sange:</h2>
+        <p>
+            - repaus in sala de asteptare <b>15-30</b> minute (este foarte important repausul post donare pentru a evita lipotimia pe scari , pe holuri si ranirea donatorului)<br />
+            - evitarea in urmatoarele <b>12</b> ore a efortlui fizic intens, conducerea autovehiculelor, consumul de alcool, fumatul imediat<br />
+            - se recomanda  multe lichide; iar regimul alimentar va fi bogat în proteine animale (oua, carne).<br />
+        </p>
+
+    </div>
+</div>
+
+
+<div>
+    <p><a href="@Url.Action("Create", "Donations")" class="btn btn-primary btn-lg" style="background-color:red">Doneaza</a></p>
+</div>
+
+
+

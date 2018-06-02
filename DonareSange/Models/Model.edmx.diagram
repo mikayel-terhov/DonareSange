@@ -23,7 +23,12 @@
         <EntityTypeShape EntityType="BloodDonationModel.Staff" Width="1.5" PointX="6" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BloodDonationModel.sysdiagram" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="BloodDonationModel.FK_Centre_Address" ManuallyRouted="false" />
-        <AssociationConnector Association="BloodDonationModel.FK_Clinic_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="BloodDonationModel.FK_Clinic_Address" ManuallyRouted="true" >
+          <ConnectorPoint PointX="3.0011528461538459" PointY="8.701396484375" />
+          <ConnectorPoint PointX="2.625" PointY="9.0775493305288464" />
+          <ConnectorPoint PointX="2.625" PointY="15.498847153846153" />
+          <ConnectorPoint PointX="3.0011528461538459" PointY="15.875" />
+        </AssociationConnector>
         <AssociationConnector Association="BloodDonationModel.FK_DonorPersonalDetails_Address" ManuallyRouted="false" />
         <AssociationConnector Association="BloodDonationModel.FK_DonorPersonalDetails_Address1" ManuallyRouted="false" />
         <AssociationConnector Association="BloodDonationModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />

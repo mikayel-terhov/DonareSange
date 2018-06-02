@@ -46,12 +46,13 @@ namespace DonareSange.Migrations
             //    new AspNetUser{ Id = ids[5],Email = "zagan@gmail.com", UserName = "zagan@gmail.com", PasswordHash =  new PasswordHasher().HashPassword("Test1!"), PhoneNumber = "5555555",userType = UserTypes.STAFF.ToString()},
             //    new AspNetUser{ Id = ids[6],Email = "dragos@gmail.com", UserName = "dragos@gmail.com", PasswordHash =  new PasswordHasher().HashPassword("Test1!"), PhoneNumber = "5555555",userType = UserTypes.STAFF.ToString() },
             //    new AspNetUser{ Id = ids[7],Email = "codrin@gmail.com", UserName = "codrin@gmail.com", PasswordHash =  new PasswordHasher().HashPassword("Test1!"), PhoneNumber = "5555555",userType = UserTypes.DONOR.ToString() },
-
             //};
             //foreach (var user in users)
             //{
             //    UserManager.Create(user);
             //}
+
+
 
         }
     }
