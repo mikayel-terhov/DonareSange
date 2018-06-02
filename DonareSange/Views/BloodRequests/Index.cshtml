@@ -5,6 +5,7 @@
 }
 
 <h2>Index</h2>
+<p>@Request.QueryString["type"]</p>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -38,38 +39,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.state)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trombocite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.plasma)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.globule_rosii)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PacientCNP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Centre.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Clinic.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BloodRequestId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BloodRequestId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BloodRequestId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trombocite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.plasma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.globule_rosii)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PacientCNP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Centre.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clinic.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BloodRequestId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BloodRequestId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BloodRequestId })
+            </td>
+        </tr>
+    }
 
 </table>

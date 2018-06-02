@@ -1,0 +1,61 @@
+﻿@model DonareSange.Models.DonorPersonalDetail
+
+@{
+    ViewBag.Title = "DonorPersonalDetails";
+}
+<h2>DonorPersonalDetails</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+   
+    <div class="form-group">
+        @Html.LabelFor(m => m.firstname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.firstname, new { @class = "form-control", @Value = Model.firstname })
+            @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.lastname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.lastname, new { @class = "form-control",@Value = Model.lastname })
+            @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.sex, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.sex, new { @class = "form-control",@Value = Model.sex })
+            @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DonorCNP, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.DonorCNP, new { @class = "form-control", @Value = Model.DonorCNP })
+            @Html.ValidationMessageFor(model => model.DonorCNP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.addressCurrent, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.addressCurrent, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.addressRegistred, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.addressRegistred, new { @class = "form-control" })
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.DonorId, new { @Value = Model.DonorId })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Save changes" />
+        </div>
+    </div>
+}

@@ -13,6 +13,7 @@ namespace DonareSange.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public string UserType { get; set; }
+        public string Id { get; set; }
     }
 
     public class ManageLoginsViewModel

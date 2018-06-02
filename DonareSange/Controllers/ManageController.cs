@@ -15,6 +15,7 @@ namespace DonareSange.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private BloodDonationEntities2 db = new BloodDonationEntities2();
 
         public ManageController()
         {
@@ -49,7 +50,61 @@ namespace DonareSange.Controllers
                 _userManager = value;
             }
         }
+        [AllowAnonymous]
+        public ActionResult DonorPersonalDetails(string ids)
+        {
 
+            var details = db.DonorPersonalDetails.ToList();
+            var donorPers = new DonorPersonalDetail();
+            foreach (DonorPersonalDetail pd in details)
+            {
+
+                if (pd.DonorId == ids)
+                {
+                    donorPers = new DonorPersonalDetail
+                    {
+                        PersonalDetailsId = pd.PersonalDetailsId,
+                        firstname = pd.firstname,
+                        lastname = pd.lastname,
+                        email = pd.email,
+                        DonorId = pd.DonorId,
+                        DonorCNP = pd.DonorCNP,
+                        addressCurrent = pd.addressCurrent,
+                        addressRegistred = pd.addressRegistred,
+                        sex = pd.sex
+                    };
+                    return View(donorPers);
+                }
+            }
+            return View("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DonorPersonalDetails([Bind(Include = "PersonalDetailsId,email,firstname,lastname,DonorId,isActive,DonorCNP,sex")] DonorPersonalDetail donorPersonalDetail)
+        {
+            if (ModelState.IsValid)
+            {
+
+                    var d = db.DonorPersonalDetails.Where(x => x.DonorId == donorPersonalDetail.DonorId).ToList();
+                    foreach (DonorPersonalDetail pd in d)
+                    {
+                        if (pd.DonorId == donorPersonalDetail.DonorId)
+                        {
+                            db.Entry(pd).State = System.Data.Entity.EntityState.Modified;
+                            pd.DonorCNP = donorPersonalDetail.DonorCNP;
+                            pd.firstname = donorPersonalDetail.firstname;
+                            pd.lastname = donorPersonalDetail.lastname;
+                            pd.sex = donorPersonalDetail.sex;
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    //return RedirectToAction("Index");
+              
+                
+            }
+            return View();
+        }
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
@@ -71,7 +126,8 @@ namespace DonareSange.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                UserType = GetUserType()
+                UserType = GetUserType(),
+                Id = userId
             };
             return View(model);
         }
@@ -213,6 +269,7 @@ namespace DonareSange.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
+
 
         //
         // GET: /Manage/ChangePassword

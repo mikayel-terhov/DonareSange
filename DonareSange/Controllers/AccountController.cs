@@ -51,7 +51,7 @@ namespace DonareSange.Controllers
                 _userManager = value;
             }
         }
-
+        
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -76,10 +76,13 @@ namespace DonareSange.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = UserManager.FindByEmail(model.Email);
+
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToUserHome(returnUrl, user.UserType);
+                    //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -153,32 +156,33 @@ namespace DonareSange.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType.ToString()};
                 var result = await UserManager.CreateAsync(user, model.Password);
-                var db = new BloodDonationEntities2();
-                var users = db.AspNetUsers;
-                string id = "";
-                foreach (AspNetUser u in users)
-                {
-                    if (u.Email == model.Email)
-                    {
-                        id = u.Id;
-                    }
-                }
-                if (model.UserType == UserTypes.DONOR)
-                {
-                    var personalDetails = new DonorPersonalDetail
-                    {
-                        DonorId = id,
-                        email = model.Email
-                    };
-                    db.DonorPersonalDetails.Add(personalDetails);
-                    db.SaveChanges();
-                }
+                
 
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
-                   
+                    var db = new BloodDonationEntities2();
+                    var users = db.AspNetUsers;
+                    string id = "";
+                    foreach (AspNetUser u in users)
+                    {
+                        if (u.Email == model.Email)
+                        {
+                            id = u.Id;
+                            model.Id = u.Id;
+                        }
+                    }
+                    if (model.UserType == UserTypes.DONOR)
+                    {
+                        var personalDetails = new DonorPersonalDetail
+                        {
+                            DonorId = id,
+                            email = model.Email
+                        };
+                        db.DonorPersonalDetails.Add(personalDetails);
+                        db.SaveChanges();
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -517,6 +521,11 @@ namespace DonareSange.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private ActionResult RedirectToUserHome(string returnUrl, string userType)
+        {
+            return RedirectToAction("Index", "BloodRequests", new { type = userType });
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
