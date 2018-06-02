@@ -1,5 +1,20 @@
 ﻿@model IEnumerable<DonareSange.Models.Donation>
 
+
+
+@if (Request.QueryString["type"] == "DONOR")
+        { <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index", "Donors", new { type=Request.QueryString["type"] })"> Doneaza </a></li>
+                <li class="active"><a href="@Url.Action("Index", "Donations", new { type=Request.QueryString["type"] })">My Donations </a> </li>
+                
+            </ul>
+
+        </div>
+    </nav>
+}
 @{
     ViewBag.Title = "Index";
 }
@@ -29,29 +44,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.passedTests)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Centre.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DonationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DonationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DonationId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.passedTests)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Centre.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DonationId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DonationId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DonationId })
+            </td>
+        </tr>
+    }
 
 </table>

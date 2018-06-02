@@ -1,4 +1,23 @@
-﻿@model DonareSange.Models.IndexViewModel
+﻿
+@model DonareSange.Models.IndexViewModel
+
+
+@if (Model.UserType == "DONOR")
+            {
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+
+
+
+                        <ul class="nav navbar-nav">
+                            <li><a href="@Url.Action("Index", "Donors", new { type=Model.UserType })"> Doneaza </a></li>
+                            <li><a href="@Url.Action("Index", "Donations", new { type=Model.UserType })">My Donations </a> </li>
+
+                        </ul>
+
+                    </div>
+                </nav>
+            }
 @{
     ViewBag.Title = "Manage";
 }
@@ -24,6 +43,6 @@
             }
             ]
         </dd>
-        
+
     </dl>
 </div>
