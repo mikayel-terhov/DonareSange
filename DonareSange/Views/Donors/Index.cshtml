@@ -50,7 +50,7 @@
 
 
 <div>
-    <p><a href="@Url.Action("Create", "Donations")" class="btn btn-primary btn-lg" style="background-color:red">Doneaza</a></p>
+    <p><a href="@Url.Action("Create", "Donations", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})" class="btn btn-primary btn-lg" style="background-color:red">Doneaza</a></p>
 </div>
 
 
