@@ -10,8 +10,8 @@
 
 
             <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors", new { type=Model.UserType })"> Doneaza </a></li>
-                <li><a href="@Url.Action("Index", "Donations", new { type=Model.UserType })">My Donations </a> </li>
+                <li><a href="@Url.Action("Index", "Donors", new { type=Model.UserType, token = Model.Id })"> Doneaza </a></li>
+                <li><a href="@Url.Action("Index", "Donations", new { type=Model.UserType, token = Model.Id })">My Donations </a> </li>
 
             </ul>
 
@@ -34,8 +34,8 @@
         <dd>
             [
             @if (Model.HasPassword)
-        {
-            @Html.ActionLink("Change your password", "ChangePassword")
+            {
+            <a href="@Url.Action("ChangePassword",new { type = Model.UserType, token = Model.Id})">Change password</a>
     }
     else
     {
@@ -46,7 +46,7 @@
         
         <dt>Set personal details:</dt>
         <dd>
-            @Html.ActionLink("Edit", "DonorPersonalDetails", new { ids = Model.Id })
+            @Html.ActionLink("Edit", "DonorPersonalDetails", new { token = Model.Id , type = Model.UserType})
         </dd>
 
     </dl>

@@ -81,7 +81,7 @@ namespace DonareSange.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToUserHome(returnUrl, user.UserType);
+                    return RedirectToUserHome(returnUrl, user.UserType,user.Id);
                     //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -523,9 +523,9 @@ namespace DonareSange.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private ActionResult RedirectToUserHome(string returnUrl, string userType)
+        private ActionResult RedirectToUserHome(string returnUrl, string userType, string id)
         {
-            return RedirectToAction("Index", "BloodRequests", new { type = userType });
+            return RedirectToAction("Index", "Home", new { type = userType, token = id });
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

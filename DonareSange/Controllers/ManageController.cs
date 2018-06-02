@@ -51,7 +51,7 @@ namespace DonareSange.Controllers
             }
         }
         [AllowAnonymous]
-        public ActionResult DonorPersonalDetails(string ids)
+        public ActionResult DonorPersonalDetails(string token, string type)
         {
 
             var details = db.DonorPersonalDetails.ToList();
@@ -59,7 +59,7 @@ namespace DonareSange.Controllers
             foreach (DonorPersonalDetail pd in details)
             {
 
-                if (pd.DonorId == ids)
+                if (pd.DonorId == token)
                 {
                     donorPers = new DonorPersonalDetail
                     {
@@ -90,13 +90,15 @@ namespace DonareSange.Controllers
                     {
                         if (pd.DonorId == donorPersonalDetail.DonorId)
                         {
+             
+
                             db.Entry(pd).State = System.Data.Entity.EntityState.Modified;
                             pd.DonorCNP = donorPersonalDetail.DonorCNP;
                             pd.firstname = donorPersonalDetail.firstname;
                             pd.lastname = donorPersonalDetail.lastname;
                             pd.sex = donorPersonalDetail.sex;
                             db.SaveChanges();
-                            return RedirectToAction("Index");
+                            return RedirectToAction("Index",new { type = "DONOR", token = pd.DonorId});
                         }
                     }
                     //return RedirectToAction("Index");
@@ -296,7 +298,7 @@ namespace DonareSange.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess, type = user.UserType, token = user.Id });
             }
             AddErrors(result);
             return View(model);

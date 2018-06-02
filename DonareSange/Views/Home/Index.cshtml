@@ -5,8 +5,8 @@
         <div class="container-fluid">
 
             <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors", new { type=Request.QueryString["type"] })"> Doneaza </a></li>
-                <li class="active"><a href="@Url.Action("Index", "Donations", new { type=Request.QueryString["type"] })">My Donations </a> </li>
+                <li><a href="@Url.Action("Index", "Donors", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})"> Doneaza </a></li>
+                <li class="active"><a href="@Url.Action("Index", "Donations", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})">My Donations </a> </li>
 
             </ul>
 
