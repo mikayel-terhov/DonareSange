@@ -4,7 +4,7 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-
+<p>@Model.Id</p>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4>Change your account settings</h4>
@@ -24,6 +24,9 @@
             }
             ]
         </dd>
-        
+        <dt>Set personal details:</dt>
+        <dd>
+            @Html.ActionLink("Edit","DonorPersonalDetails",new { ids = Model.Id})
+        </dd>
     </dl>
 </div>
