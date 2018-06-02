@@ -9,117 +9,108 @@ using System.Web.Mvc;
 using DonareSange.Models;
 
 namespace DonareSange.Controllers
-{   
-    public class DonationsController : Controller
+{
+    public class DonorsController : Controller
     {
         private BloodDonationEntities2 db = new BloodDonationEntities2();
 
-        // GET: Donations
+        // GET: Donors
         public ActionResult Index()
         {
-            var donations = db.Donations.Include(d => d.AspNetUser).Include(d => d.Centre);
-            return View(donations.ToList());
+            return View(db.Donors.ToList());
         }
 
-        // GET: Donations/Details/5
+        // GET: Donors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Donation donation = db.Donations.Find(id);
-            if (donation == null)
+            Donor donor = db.Donors.Find(id);
+            if (donor == null)
             {
                 return HttpNotFound();
             }
-            return View(donation);
+            return View(donor);
         }
 
-        // GET: Donations/Create
+        // GET: Donors/Create
         public ActionResult Create()
         {
-            ViewBag.DonorId = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.CentreId = new SelectList(db.Centres, "CentreId", "name");
             return View();
         }
 
-        // POST: Donations/Create
+        // POST: Donors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DonationId,DonorId,CentreId,date,passedTests,quantity,trombocite,plasma,globule_rosii")] Donation donation)
+        public ActionResult Create([Bind(Include = "DonorId,username,password")] Donor donor)
         {
             if (ModelState.IsValid)
             {
-                db.Donations.Add(donation);
+                db.Donors.Add(donor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DonorId = new SelectList(db.AspNetUsers, "Id", "Email", donation.DonorId);
-            ViewBag.CentreId = new SelectList(db.Centres, "CentreId", "name", donation.CentreId);
-            return View(donation);
+            return View(donor);
         }
 
-        // GET: Donations/Edit/5
+        // GET: Donors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Donation donation = db.Donations.Find(id);
-            if (donation == null)
+            Donor donor = db.Donors.Find(id);
+            if (donor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DonorId = new SelectList(db.AspNetUsers, "Id", "Email", donation.DonorId);
-            ViewBag.CentreId = new SelectList(db.Centres, "CentreId", "name", donation.CentreId);
-            return View(donation);
+            return View(donor);
         }
 
-        // POST: Donations/Edit/5
+        // POST: Donors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DonationId,DonorId,CentreId,date,passedTests,quantity,trombocite,plasma,globule_rosii")] Donation donation)
+        public ActionResult Edit([Bind(Include = "DonorId,username,password")] Donor donor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(donation).State = EntityState.Modified;
+                db.Entry(donor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DonorId = new SelectList(db.AspNetUsers, "Id", "Email", donation.DonorId);
-            ViewBag.CentreId = new SelectList(db.Centres, "CentreId", "name", donation.CentreId);
-            return View(donation);
+            return View(donor);
         }
 
-        // GET: Donations/Delete/5
+        // GET: Donors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Donation donation = db.Donations.Find(id);
-            if (donation == null)
+            Donor donor = db.Donors.Find(id);
+            if (donor == null)
             {
                 return HttpNotFound();
             }
-            return View(donation);
+            return View(donor);
         }
 
-        // POST: Donations/Delete/5
+        // POST: Donors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Donation donation = db.Donations.Find(id);
-            db.Donations.Remove(donation);
+            Donor donor = db.Donors.Find(id);
+            db.Donors.Remove(donor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

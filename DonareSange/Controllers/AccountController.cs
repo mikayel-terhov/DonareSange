@@ -188,6 +188,57 @@ namespace DonareSange.Controllers
             return View(model);
         }
 
+
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterAdmin(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType.ToString() };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                var db = new BloodDonationEntities2();
+                var users = db.AspNetUsers;
+                string id = "";
+                foreach (AspNetUser u in users)
+                {
+                    if (u.Email == model.Email)
+                    {
+                        id = u.Id;
+                    }
+                }
+                if (model.UserType == UserTypes.DONOR)
+                {
+                    var personalDetails = new DonorPersonalDetail
+                    {
+                        DonorId = id,
+                        email = model.Email
+                    };
+                    db.DonorPersonalDetails.Add(personalDetails);
+                    db.SaveChanges();
+                }
+
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
+
+
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
