@@ -3,21 +3,21 @@
 
 
 @if (Model.UserType == "DONOR")
-            {
-                <nav class="navbar navbar-inverse">
-                    <div class="container-fluid">
+{
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
 
 
 
-                        <ul class="nav navbar-nav">
-                            <li><a href="@Url.Action("Index", "Donors", new { type=Model.UserType })"> Doneaza </a></li>
-                            <li><a href="@Url.Action("Index", "Donations", new { type=Model.UserType })">My Donations </a> </li>
+            <ul class="nav navbar-nav">
+                <li><a href="@Url.Action("Index", "Donors", new { type=Model.UserType })"> Doneaza </a></li>
+                <li><a href="@Url.Action("Index", "Donations", new { type=Model.UserType })">My Donations </a> </li>
 
-                        </ul>
+            </ul>
 
-                    </div>
-                </nav>
-            }
+        </div>
+    </nav>
+}
 @{
     ViewBag.Title = "Manage";
 }
@@ -34,15 +34,21 @@
         <dd>
             [
             @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
+        {
+            @Html.ActionLink("Change your password", "ChangePassword")
+    }
+    else
+    {
+        @Html.ActionLink("Create", "SetPassword")
+}
             ]
         </dd>
         
+        <dt>Set personal details:</dt>
+        <dd>
+            @Html.ActionLink("Edit", "DonorPersonalDetails", new { ids = Model.Id })
+        </dd>
+
     </dl>
 </div>
+
