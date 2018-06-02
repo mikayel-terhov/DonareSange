@@ -12,44 +12,53 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h2>Programare</h2>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    <h2>Programare</h2>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CentreId, "Centre", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CentreId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CentreId, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CentreId, "Centre", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CentreId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CentreId, "", new { @class = "text-danger" })
         </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <b>Data</b>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "datefield", type = "date" } })
-                @Html.ValidationMessageFor(model => model.date, "", new { @class = "datefield", type = "date" })
-
-
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-default" style="background-color:#e42c2c" />
-            </div>
-        </div>
-
     </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>Data</b>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "datefield", type = "date" } })
+            @Html.ValidationMessageFor(model => model.date, "", new { @class = "datefield", type = "date" })
+
+
+        </div>
+    </div>
+  
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CentreId, "CNP", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("specific_pacient_cnp", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CentreId, "", new { @class = "text-danger" })
+            <p style="font-size:80%; color:red">CNP-ul pacientului pentru care se face donatia</p> 
+        </div> 
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-default" style="background-color:#e42c2c" />
+        </div>
+    </div>
+
+</div>
 }
 
 <div>
-    <p><a href="@Url.Action("Index", "Donors")" class="btn btn-primary btn-lg" style="background-color:red">Back</a></p>
+    <p><a href="@Url.Action("Index", "Donors")" class="btn btn-default" style="background-color:#e42c2c">Back</a></p>
 </div>
 
 @section Scripts {
