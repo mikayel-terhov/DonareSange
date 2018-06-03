@@ -2,7 +2,7 @@
 
 
 
-@if (Request.QueryString["type"] == "DONOR")
+@if ( Request.QueryString["type"] == "DONOR")
         { <nav class="navbar navbar-inverse">
         <div class="container-fluid">
 
@@ -46,28 +46,101 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.passedTests)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Centre.name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.DonationId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.DonationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.DonationId })
-            </td>
-        </tr>
+        if (Request.QueryString["type"] == "DONOR" && item.AspNetUser.Id == Request.QueryString["token"])
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] })
+                </td>
+            </tr>
+        }
+        else if (Request.QueryString["type"] == "DOCTOR")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
+                </td>
+            </tr>
+        }
+        else if (Request.QueryString["type"] == "STAFF")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
+                </td>
+            </tr>
+        }
+        else if (Request.QueryString["type"] == "ADMIN")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] })
+                </td>
+            </tr>
+        }
     }
 
 </table>

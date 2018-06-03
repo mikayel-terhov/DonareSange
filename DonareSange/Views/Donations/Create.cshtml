@@ -37,28 +37,40 @@
 
         </div>
     </div>
-  
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.CentreId, "CNP", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBox("specific_pacient_cnp", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.CentreId, "", new { @class = "text-danger" })
-            <p style="font-size:80%; color:red">CNP-ul pacientului pentru care se face donatia</p> 
-        </div> 
+            <p style="font-size:80%; color:red">CNP-ul pacientului pentru care se face donatia</p>
+        </div>
+    </div>
+
+    <div class="form-group" style=" visibility:collapse">
+        @Html.LabelFor(model => model.CentreId, "DonorId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("DonorId", Request.QueryString["token"], htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CentreId, "", new { @class = "text-danger" })
+            <p style="font-size:80%; color:red">CNP-ul pacientului pentru care se face donatia</p>
+        </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
+            <a href="@Url.Action( "Index", "Donations", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})">
             <input type="submit" value="Add" class="btn btn-default" style="background-color:#e42c2c" />
+            </a>
         </div>
     </div>
 
 </div>
 }
 
+
 <div>
-    <p><a href="@Url.Action("Index", "Donors")" class="btn btn-default" style="background-color:#e42c2c">Back</a></p>
+    <p><a class="btn btn-default" style="background-color:#e42c2c" href="@Url.Action( "Index", "Donors", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})" >Back</a></p>
 </div>
 
 @section Scripts {
