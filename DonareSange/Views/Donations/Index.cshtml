@@ -2,13 +2,13 @@
 
 
 
-@if ( Request.QueryString["type"] == "DONOR")
+@if ( Convert.ToString(Session["type"]) == "DONOR")
         { <nav class="navbar navbar-inverse">
         <div class="container-fluid">
 
             <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})"> Doneaza </a></li>
-                <li class="active"><a href="@Url.Action("Index", "Donations", new { type=Request.QueryString["type"],token = Request.QueryString["token"] })">My Donations </a> </li>
+                <li><a href="@Url.Action("Index", "Donors")"> Doneaza </a></li>
+                <li class="active"><a href="@Url.Action("Index", "Donations")">My Donations </a> </li>
                 
             </ul>
 
@@ -46,7 +46,7 @@
 
     @foreach (var item in Model)
     {
-        if (Request.QueryString["type"] == "DONOR" && item.AspNetUser.Id == Request.QueryString["token"])
+        if (Convert.ToString(Session["type"]) == "DONOR" && item.AspNetUser.Id == Convert.ToString(Session["token"]))
         {
             <tr>
                 <td>
@@ -65,12 +65,12 @@
                     @Html.DisplayFor(modelItem => item.Centre.name)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] })
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) })
                 </td>
             </tr>
         }
-        else if (Request.QueryString["type"] == "DOCTOR")
+        else if (Convert.ToString(Session["type"]) == "DOCTOR")
         {
             <tr>
                 <td>
@@ -89,11 +89,11 @@
                     @Html.DisplayFor(modelItem => item.Centre.name)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) }) |
                 </td>
             </tr>
         }
-        else if (Request.QueryString["type"] == "STAFF")
+        else if (Convert.ToString(Session["type"]) == "STAFF")
         {
             <tr>
                 <td>
@@ -112,11 +112,13 @@
                     @Html.DisplayFor(modelItem => item.Centre.name)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationId }) |
+
                 </td>
             </tr>
         }
-        else if (Request.QueryString["type"] == "ADMIN")
+        else if (Convert.ToString(Session["type"]) == "ADMIN")
         {
             <tr>
                 <td>
@@ -135,9 +137,9 @@
                     @Html.DisplayFor(modelItem => item.Centre.name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId, type = Request.QueryString["type"], token = Request.QueryString["token"] })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId }) 
                 </td>
             </tr>
         }

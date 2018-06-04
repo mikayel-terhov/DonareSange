@@ -98,7 +98,10 @@ namespace DonareSange.Controllers
                             pd.lastname = donorPersonalDetail.lastname;
                             pd.sex = donorPersonalDetail.sex;
                             db.SaveChanges();
-                            return RedirectToAction("Index",new { type = "DONOR", token = pd.DonorId});
+                        var userId = User.Identity.GetUserId();
+                        ViewData["type"] = UserManager.FindByEmail(pd.DonorId).UserType;
+                        ViewData["Id"] = UserManager.FindByEmail(pd.DonorId).Id;
+                        return RedirectToAction("Index");
                         }
                     }
                     //return RedirectToAction("Index");
@@ -119,8 +122,11 @@ namespace DonareSange.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
+            //ViewDataVariables
             var userId = User.Identity.GetUserId();
+            ViewData["type"] = UserManager.FindByEmail(User.Identity.Name).UserType;
+            ViewData["Id"] = UserManager.FindByEmail(User.Identity.Name).Id;
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

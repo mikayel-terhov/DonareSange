@@ -2,7 +2,7 @@
 @model DonareSange.Models.IndexViewModel
 
 
-@if (Model.UserType == "DONOR")
+@if (Convert.ToString(Session["type"]) == "DONOR")
 {
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -10,8 +10,8 @@
 
 
             <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors", new { type=Model.UserType, token = Model.Id })"> Doneaza </a></li>
-                <li><a href="@Url.Action("Index", "Donations", new { type=Model.UserType, token = Model.Id })">My Donations </a> </li>
+                <li><a href="@Url.Action("Index", "Donors")"> Doneaza </a></li>
+                <li><a href="@Url.Action("Index", "Donations")">My Donations </a> </li>
 
             </ul>
 
@@ -20,6 +20,7 @@
 }
 @{
     ViewBag.Title = "Manage";
+    ViewBag.UserType = Convert.ToString(Session["type"]);
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -27,7 +28,7 @@
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4>Change your account settings</h4>
-    <p>@Model.UserType</p>
+    <p>Your are a @ViewBag.UserType</p>
     <hr />
     <dl class="dl-horizontal">
         <dt>Password:</dt>
@@ -35,7 +36,7 @@
             [
             @if (Model.HasPassword)
             {
-            <a href="@Url.Action("ChangePassword",new { type = Model.UserType, token = Model.Id})">Change password</a>
+            <a href="@Url.Action("ChangePassword")">Change password</a>
     }
     else
     {
@@ -46,7 +47,7 @@
         
         <dt>Set personal details:</dt>
         <dd>
-            @Html.ActionLink("Edit", "DonorPersonalDetails", new { token = Model.Id , type = Model.UserType})
+            @Html.ActionLink("Edit", "DonorPersonalDetails", new {token = Model.Id ,type=Model.UserType})
         </dd>
 
     </dl>

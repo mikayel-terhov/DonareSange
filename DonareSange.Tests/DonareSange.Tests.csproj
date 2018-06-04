@@ -95,6 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountControllerTests.cs" />
+    <Compile Include="Controllers\BloodRequestsControllerTests.cs" />
+    <Compile Include="Controllers\CentresControllerTests.cs" />
+    <Compile Include="Controllers\DonationsControllerTests.cs" />
+    <Compile Include="DonationTests.cs" />
+    <Compile Include="HomeControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>

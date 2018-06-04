@@ -12,7 +12,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="@Url.Action("Index", "Manage", new { title = "Manage", type = Request.QueryString["type"], token = Request.QueryString["token"] })">Hello @User.Identity.GetUserName()! </a>
+                <a href="@Url.Action("Index", "Manage")">Hello @User.Identity.GetUserName()!! </a>
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>

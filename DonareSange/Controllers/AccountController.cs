@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DonareSange.Models;
+using static System.Net.WebRequestMethods;
 
 namespace DonareSange.Controllers
 {
@@ -81,8 +82,11 @@ namespace DonareSange.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToUserHome(returnUrl, user.UserType,user.Id);
-                    //return RedirectToLocal(returnUrl);
+                    //SESSION VARIABLES
+                    Session["type"] = user.UserType.ToString();
+                    Session["token"] = user.Id;
+                    //return RedirectToUserHome(returnUrl, user.UserType,user.Id);
+                    return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -156,12 +160,13 @@ namespace DonareSange.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType.ToString()};
                 var result = await UserManager.CreateAsync(user, model.Password);
-                
+
 
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    Session["type"] = user.UserType;
+                    Session["token"] = user.Id;
                     var db = new BloodDonationEntities2();
                     var users = db.AspNetUsers;
                     string id = "";
@@ -204,6 +209,8 @@ namespace DonareSange.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType.ToString() };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                Session["type"] = user.UserType;
+                Session["token"] = user.Id;
                 var db = new BloodDonationEntities2();
                 var users = db.AspNetUsers;
                 string id = "";
@@ -462,7 +469,9 @@ namespace DonareSange.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.RemoveAll();
             return RedirectToAction("Index", "Home");
         }
 
