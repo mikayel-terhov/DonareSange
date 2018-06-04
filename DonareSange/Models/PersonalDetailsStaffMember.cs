@@ -11,9 +11,11 @@ namespace DonareSange.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PersonalDetailsStaffMember
     {
+        [Key]
         public int PersonalDetailsId { get; set; }
         public string email { get; set; }
         public string firstname { get; set; }
