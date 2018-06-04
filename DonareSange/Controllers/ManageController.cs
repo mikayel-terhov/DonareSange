@@ -99,6 +99,7 @@ namespace DonareSange.Controllers
                             pd.sex = donorPersonalDetail.sex;
                             db.SaveChanges();
                         var userId = User.Identity.GetUserId();
+                        //Why not session though ?????
                         ViewData["type"] = UserManager.FindByEmail(pd.DonorId).UserType;
                         ViewData["Id"] = UserManager.FindByEmail(pd.DonorId).Id;
                         return RedirectToAction("Index");
