@@ -36,6 +36,9 @@ namespace DonareSange.Models
             return new ApplicationDbContext();
         }
 
+
+        public System.Data.Entity.DbSet<DonareSange.Models.AdditionalModelViewsA.ExtendedUserDTO> ExtendedUserDTOes { get; set; }
+
         //public System.Data.Entity.DbSet<DonareSange.Models.ApplicationUser> ApplicationUsers { get; set; }
 
         //public System.Data.Entity.DbSet<DonareSange.Models.AdditionalModelViewsA.ExtendedUserDTO> ExtendedUserDTOes { get; set; }

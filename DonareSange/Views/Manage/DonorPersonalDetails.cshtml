@@ -2,19 +2,7 @@
 
 @{
     ViewBag.Title = "DonorPersonalDetails";
-}
-@if (Convert.ToString(Session["type"]) == "DONOR")
-{<nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-
-            <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors")"> Doneaza </a></li>
-                <li class="active"><a href="@Url.Action("Index", "Donations")">My Donations </a> </li>
-
-            </ul>
-
-        </div>
-    </nav>
+    ViewBag.UserType = Convert.ToString(Session["type"]);
 }
 <h2>DonorPersonalDetails</h2>
 @using (Html.BeginForm())
@@ -24,14 +12,14 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">
-        @Html.LabelFor(m => m.firstname, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.firstname,"Nume", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.firstname, new { @class = "form-control", @Value = Model.firstname })
             @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.lastname, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.lastname,"Prenume", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.lastname, new { @class = "form-control", @Value = Model.lastname })
             @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
@@ -39,21 +27,21 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.sex, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.sex,"Sex", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.sex, new { @class = "form-control", @Value = Model.sex })
+            @Html.DropDownList("Sex", null, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger" })
 
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.DonorCNP, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.DonorCNP,"CNP", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.DonorCNP, new { @class = "form-control", @Value = Model.DonorCNP })
             @Html.ValidationMessageFor(model => model.DonorCNP, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(m => m.addressCurrent, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.addressCurrent, new { @class = "form-control" })
@@ -64,7 +52,7 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.addressRegistred, new { @class = "form-control" })
         </div>
-    </div>
+    </div>*@
     @Html.HiddenFor(m => m.DonorId, new { @Value = Model.DonorId })
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

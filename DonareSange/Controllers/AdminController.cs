@@ -52,7 +52,15 @@ namespace DonareSange.Controllers
             }
         }
         // GET: Admin
-        
+
+        [AllowAnonymous]
+        public ActionResult RegisterAdmin(string id)
+        {
+            return View("RegisterAdmin");
+        }
+
+
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

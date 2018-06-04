@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DonareSange.Models;
+using System.Collections.Generic;
 
 namespace DonareSange.Controllers
 {
@@ -56,6 +57,9 @@ namespace DonareSange.Controllers
 
             var details = db.DonorPersonalDetails.ToList();
             var donorPers = new DonorPersonalDetail();
+            List<string> sex = new List<string>();
+            sex.Add("M");
+            sex.Add("F");
             foreach (DonorPersonalDetail pd in details)
             {
 
@@ -73,6 +77,7 @@ namespace DonareSange.Controllers
                         addressRegistred = pd.addressRegistred,
                         sex = pd.sex
                     };
+                    ViewBag.Sex = new SelectList(sex);
                     return View(donorPers);
                 }
             }
@@ -98,10 +103,10 @@ namespace DonareSange.Controllers
                             pd.lastname = donorPersonalDetail.lastname;
                             pd.sex = donorPersonalDetail.sex;
                             db.SaveChanges();
-                        var userId = User.Identity.GetUserId();
-                        ViewData["type"] = UserManager.FindByEmail(pd.DonorId).UserType;
-                        ViewData["Id"] = UserManager.FindByEmail(pd.DonorId).Id;
-                        return RedirectToAction("Index");
+                            var userId = User.Identity.GetUserId();
+                            ViewData["type"] = UserManager.FindByEmail(pd.email).UserType;
+                            ViewData["Id"] = UserManager.FindByEmail(pd.email).Id;
+                            return RedirectToAction("Index");
                         }
                     }
                     //return RedirectToAction("Index");
@@ -304,7 +309,7 @@ namespace DonareSange.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess, type = user.UserType, token = user.Id });
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess});
             }
             AddErrors(result);
             return View(model);
