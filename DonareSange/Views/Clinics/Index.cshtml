@@ -5,7 +5,8 @@
 }
 
 <h2>Index</h2>
-
+@if (Convert.ToString(Session["type"]) == "ADMIN")
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -29,29 +30,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.StreetName)
+            </td>
+            <td >
+                    @Html.DisplayFor(modelItem => item.Address.StrNumber)
+            </td>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            @Html.ActionLink("Edit", "Edit", new { id = item.ClinicId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ClinicId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ClinicId })
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address.StreetName)
-        </td>
-        <td >
-                @Html.DisplayFor(modelItem => item.Address.StrNumber)
-        </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ClinicId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ClinicId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ClinicId })
-    </td>
-    </tr>
-}
+        </tr>
+    }
 
 </table>
+}

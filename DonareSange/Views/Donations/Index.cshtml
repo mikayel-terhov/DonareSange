@@ -2,19 +2,6 @@
 
 
 
-@if ( Convert.ToString(Session["type"]) == "DONOR")
-        { <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-
-            <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors")"> Doneaza </a></li>
-                <li class="active"><a href="@Url.Action("Index", "Donations")">My Donations </a> </li>
-                
-            </ul>
-
-        </div>
-    </nav>
-}
 @{
     ViewBag.Title = "Index";
 }

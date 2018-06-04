@@ -1,26 +1,11 @@
 ﻿@*    Index HOME    *@
 
-@if (Convert.ToString(Session["type"]) == "DONOR")
-{<nav class="navbar navbar-inverse">
-        <div class="container-fluid">
 
-            <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})"> Doneaza </a></li>
-                <li><a href="@Url.Action("Index", "Donations", new { type=Request.QueryString["type"], token = Request.QueryString["token"]})">My Donations </a> </li>
-
-            </ul>
-
-        </div>
-    </nav>
-} else {
-    <p>Log in to use our webpage fully</p>
-
-}
 @{
     ViewBag.Title = "Home Page";
 }
 
-
+<br />
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -69,7 +54,7 @@
 
 
 
-<div class="col-md-6">
+<div class="col-xs-6 col-sm-6 col-lg-6 table-responsive">
     <h2 style="color:red">Donand sange poti salva chiar si trei vieti:</h2>
     <p>
         Din cantitatea de sange donata o singura data se pot extrage elementele care pot salva vietile a trei pacienti.<br />
@@ -85,7 +70,7 @@
 
 
 
-<div class="col-md-6">
+<div class="col-xs-6 col-sm-6 col-lg-6 table-responsive">
     <h2 style="color:red">Cine poate dona?</h2>
     <p>
         Chiar si tu daca indeplinesti urmatoarele conditii:</br>

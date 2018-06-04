@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DonareSange.Models;
 using static System.Net.WebRequestMethods;
+using System.Collections.Generic;
 
 namespace DonareSange.Controllers
 {
@@ -201,7 +202,6 @@ namespace DonareSange.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterAdmin(RegisterViewModel model)
         {
@@ -231,13 +231,13 @@ namespace DonareSange.Controllers
                     db.DonorPersonalDetails.Add(personalDetails);
                     db.SaveChanges();
                 }
-
+                
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
                 }
                 AddErrors(result);
             }
@@ -462,8 +462,31 @@ namespace DonareSange.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<string> elements)
+        {
+            // Create an empty list to hold result of the operation
+            var selectList = new List<SelectListItem>();
 
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            // This will result in MVC rendering each item as:
+            //     <option value="State Name">State Name</option>
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element,
+                    Text = element
+                });
+            }
+
+            return selectList;
+        }
         //
+        private List<ApplicationUser> GetUsers()
+        {
+            return new ApplicationDbContext().Users.ToList();
+        }
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]

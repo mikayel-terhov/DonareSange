@@ -2,22 +2,6 @@
 @model DonareSange.Models.IndexViewModel
 
 
-@if (Convert.ToString(Session["type"]) == "DONOR")
-{
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-
-
-
-            <ul class="nav navbar-nav">
-                <li><a href="@Url.Action("Index", "Donors")"> Doneaza </a></li>
-                <li><a href="@Url.Action("Index", "Donations")">My Donations </a> </li>
-
-            </ul>
-
-        </div>
-    </nav>
-}
 @{
     ViewBag.Title = "Manage";
     ViewBag.UserType = Convert.ToString(Session["type"]);
@@ -36,19 +20,43 @@
             [
             @if (Model.HasPassword)
             {
-            <a href="@Url.Action("ChangePassword")">Change password</a>
-    }
-    else
-    {
-        @Html.ActionLink("Create", "SetPassword")
-}
+                <a href="@Url.Action("ChangePassword")">Change password</a>
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
             ]
         </dd>
-        
+
         <dt>Set personal details:</dt>
-        <dd>
-            @Html.ActionLink("Edit", "DonorPersonalDetails", new {token = Model.Id ,type=Model.UserType})
-        </dd>
+        @if (ViewBag.UserType == "DONOR")
+        {
+            <dd>
+                @Html.ActionLink("Edit", "DonorPersonalDetails", new { token = Model.Id, type = Model.UserType })
+            </dd>
+        }
+        else if (ViewBag.UserType == "DOCTOR")
+        {
+            <dd>
+                <a class="btn-link" href="#">Edit</a>
+            </dd>
+        }
+        else if (ViewBag.UserType == "STAFF")
+        {
+            <dd>
+                <a class="btn-link" href="#">Edit</a>
+
+
+            </dd>
+        }
+        else
+        {
+            <dd>
+                <a class="btn-link" href="#">Edit</a>
+
+            </dd>
+        }
 
     </dl>
 </div>
