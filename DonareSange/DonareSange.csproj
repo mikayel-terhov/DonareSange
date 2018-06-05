@@ -217,11 +217,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdditionalModelViewsA\AdminViewModels.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\AdditionalModelViewsA\DoctorViewModel.cs" />
-=======
     <Compile Include="Models\AdditionalModelViewsA\StaffMemberViewModel.cs" />
->>>>>>> 85d2b10c3328c0806da93fe1ec9432d52d973b06
     <Compile Include="Models\Address.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -537,16 +534,13 @@
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Views\AdminViews\RegisterAdmin.cshtml" />
     <Content Include="Views\Admin\RegisterAdmin.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Doctors\Create.cshtml" />
     <Content Include="Views\Doctors\Delete.cshtml" />
     <Content Include="Views\Doctors\Details.cshtml" />
     <Content Include="Views\Doctors\Edit.cshtml" />
     <Content Include="Views\Doctors\Index.cshtml" />
-=======
     <Content Include="Views\Staffs\Edit.cshtml" />
     <Content Include="Views\Staffs\Index.cshtml" />
->>>>>>> 85d2b10c3328c0806da93fe1ec9432d52d973b06
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
