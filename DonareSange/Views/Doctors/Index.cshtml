@@ -1,0 +1,74 @@
+﻿@model DonareSange.Models.AdditionalModelViewsA.DoctorViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Blood Requests:</h2>
+<table class="table">
+    <tr>
+        <th>
+            <b>State</b>
+        </th>
+
+        <th>
+            <b>Trombocite</b>
+        </th>
+
+        <th>
+            <b>Plasma</b>
+        </th>
+
+        <th>
+            <b>Globule Rosii</b>
+        </th>
+
+        <th>
+            <b>Cantitate</b>
+        </th>
+
+        <th>
+            <b>Pacient</b>
+        </th>
+
+    </tr>
+
+    @foreach(var item in Model.requests.Where(item => item.ClinicId == Model.detailsDoctor.Where(x => x.DoctorId == Convert.ToString(Session["token"])).SingleOrDefault().ClinicId))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.state)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelitem => item.trombocite)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelitem => item.plasma)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelitem => item.globule_rosii)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelitem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.trombocite)
+            </td>
+
+            <td>
+                @Html.ActionLink("edit", "edit", new { id = item.BloodRequestId }) |
+                @Html.ActionLink("delete", "delete", new { id = item.BloodRequestId })
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+
+<div>
+    <p><a href="@Url.Action("Create", "Doctors")" class="btn btn-primary btn-lg" style="background-color:crimson">Request</a></p>
+</div>

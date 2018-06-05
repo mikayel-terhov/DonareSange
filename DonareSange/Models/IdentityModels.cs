@@ -39,7 +39,11 @@ namespace DonareSange.Models
 
         public System.Data.Entity.DbSet<DonareSange.Models.AdditionalModelViewsA.ExtendedUserDTO> ExtendedUserDTOes { get; set; }
 
+<<<<<<< HEAD
+        public System.Data.Entity.DbSet<DonareSange.Models.Doctor> Doctors { get; set; }
+=======
         public System.Data.Entity.DbSet<DonareSange.Models.Staff> Staffs { get; set; }
+>>>>>>> 85d2b10c3328c0806da93fe1ec9432d52d973b06
 
         //public System.Data.Entity.DbSet<DonareSange.Models.ApplicationUser> ApplicationUsers { get; set; }
 
