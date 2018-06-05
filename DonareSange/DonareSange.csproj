@@ -218,6 +218,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdditionalModelViewsA\AdminViewModels.cs" />
     <Compile Include="Models\AdditionalModelViewsA\DoctorViewModel.cs" />
+    <Compile Include="Models\AdditionalModelViewsA\SolveRequestModel.cs" />
     <Compile Include="Models\AdditionalModelViewsA\StaffMemberViewModel.cs" />
     <Compile Include="Models\Address.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -541,6 +542,7 @@
     <Content Include="Views\Doctors\Index.cshtml" />
     <Content Include="Views\Staffs\Edit.cshtml" />
     <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\Staffs\SolveRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
