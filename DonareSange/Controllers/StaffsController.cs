@@ -14,7 +14,6 @@ namespace DonareSange.Controllers
     [Authorize]
     public class StaffsController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
         private BloodDonationEntities2 db = new BloodDonationEntities2();
 
         // GET: Staffs
@@ -42,6 +41,10 @@ namespace DonareSange.Controllers
         // GET: Staffs/Edit/5
         public ActionResult Edit(int id)
         {
+            if (Convert.ToString(Session["type"]) != "STAFF")
+            {
+                return Redirect("/Home");
+            }
             if (id <= 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -61,6 +64,10 @@ namespace DonareSange.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "DonationId,quantity,trombocite,plasma,globule_rosii")] Donation donation)
         {
+            if (Convert.ToString(Session["type"]) != "STAFF")
+            {
+                return Redirect("/Home");
+            }
             if (ModelState.IsValid)
             {
                 Donation d = db.Donations.Where(x => x.DonationId == donation.DonationId).Single();
@@ -73,6 +80,90 @@ namespace DonareSange.Controllers
                 return RedirectToAction("Index");
             }
             return View(donation);
+        }
+
+        [AllowAnonymous]
+        public ActionResult SolveRequest(int? id)
+        {
+            if (Convert.ToString(Session["type"]) != "STAFF")
+            {
+                return Redirect("/Home");
+            }
+            if (id != null)
+            {
+                SolveRequestModel srm = new SolveRequestModel
+                {
+                    BloodRequest = db.BloodRequests.Find(id),
+                    Donations = db.Donations.AsEnumerable(),
+                    Donors = db.DonorPersonalDetails.AsEnumerable()
+                };
+                return View(srm);
+            }
+            return View("Index");
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult Adauga(int? idRequest, int? idDonatie)
+        {
+            if(Convert.ToString(Session["type"]) != "STAFF")
+            {
+                return Redirect("/Home");
+            }
+            if(idRequest == null || idDonatie == null)
+            {
+                return View("Index");
+            }
+            Donation donation = db.Donations.Find(idDonatie);
+            BloodRequest br = db.BloodRequests.Find(idRequest);
+            if(donation.trombocite >= br.trombocite)
+            {
+                donation.trombocite = donation.trombocite - br.trombocite;
+                br.trombocite = 0;
+
+            }
+            else
+            {
+                br.trombocite = br.trombocite - donation.trombocite;
+                donation.trombocite = 0;
+            }
+
+            if (donation.plasma >= br.plasma)
+            {
+                donation.plasma = donation.plasma - br.plasma;
+                br.plasma = 0;
+            }
+            else
+            {
+                br.plasma = br.plasma - donation.plasma;
+                donation.plasma = 0;
+            }
+
+            if (donation.globule_rosii >= br.globule_rosii)
+            {
+                donation.globule_rosii = donation.globule_rosii - br.globule_rosii;
+                br.globule_rosii = 0;
+            }
+            else
+            {
+                br.globule_rosii = br.globule_rosii - donation.globule_rosii;
+                donation.globule_rosii = 0;
+            }
+
+            if(br.globule_rosii == 0 && br.plasma == 0 && br.trombocite == 0)
+            {
+                br.state = "" + br.state.Split('-')[0] + "-FULFILLED";
+            }
+
+            db.Entry(donation).State = EntityState.Modified;
+            db.SaveChanges();
+
+            db.Entry(br).State = EntityState.Modified;
+            db.SaveChanges();
+
+       
+            return RedirectToAction("SolveRequest",new { id = br.BloodRequestId});
+
         }
 
         protected override void Dispose(bool disposing)
