@@ -6,120 +6,80 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DonareSange.Models;
+using DonareSange.Models.AdditionalModelViewsA;
 
-namespace DonareSange.Models
+namespace DonareSange.Controllers
 {
-    public class AspNetUsersController : Controller
+    [Authorize]
+    public class StaffsController : Controller
     {
-        private BloodDonationEntities2 bd = new BloodDonationEntities2();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        private BloodDonationEntities2 db = new BloodDonationEntities2();
 
-        // GET: AspNetUsers
+        // GET: Staffs
         public ActionResult Index()
         {
-            
-            return View(bd.AspNetUsers.AsEnumerable());
+            if(Convert.ToString(Session["type"]) != "STAFF")
+            {
+                return Redirect("/Home");
+            }
+            var staffview = new StaffMemberViewModel
+            {
+                Donors = db.DonorPersonalDetails.AsEnumerable(),
+                Donations = db.Donations.AsEnumerable(),
+                BloodRequests = db.BloodRequests.AsEnumerable(),
+                users = db.AspNetUsers.AsEnumerable(),
+                Clinics = db.Clinics.AsEnumerable(),
+                Centres = db.Centres.AsEnumerable()
+            };
+            return View(staffview);
         }
 
-        // GET: AspNetUsers/Details/5
-        public ActionResult Details(string id)
+        // GET: Staffs/Details/5
+       
+
+        // GET: Staffs/Edit/5
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            if (id <= 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser AspNetUser = bd.AspNetUsers.Find(id);
-            if (AspNetUser == null)
+            Donation donation = db.Donations.Find(id);
+            if (donation == null)
             {
                 return HttpNotFound();
             }
-            return View(AspNetUser);
+            return View(donation);
         }
 
-        // GET: AspNetUsers/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AspNetUsers/Create
+        // POST: Staffs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,username,password")] AspNetUser AspNetUser)
+        public ActionResult Edit([Bind(Include = "DonationId,quantity,trombocite,plasma,globule_rosii")] Donation donation)
         {
             if (ModelState.IsValid)
             {
-                bd.AspNetUsers.Add(AspNetUser);
-                bd.SaveChanges();
+                Donation d = db.Donations.Where(x => x.DonationId == donation.DonationId).Single();
+                db.Entry(d).State = EntityState.Modified;
+                d.trombocite = donation.trombocite;
+                d.globule_rosii = donation.globule_rosii;
+                d.plasma = donation.plasma;
+                d.quantity = donation.quantity;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(AspNetUser);
-        }
-
-        // GET: AspNetUsers/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetUser AspNetUser = bd.AspNetUsers.Find(id);
-            if (AspNetUser == null)
-            {
-                return HttpNotFound();
-            }
-            return View(AspNetUser);
-        }
-
-        // POST: AspNetUsers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,username,password")] AspNetUser AspNetUser)
-        {
-            if (ModelState.IsValid)
-            {
-                bd.Entry(AspNetUser).State = EntityState.Modified;
-                bd.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(AspNetUser);
-        }
-
-        // GET: AspNetUsers/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            AspNetUser AspNetUser = bd.AspNetUsers.Find(id);
-            if (AspNetUser == null)
-            {
-                return HttpNotFound();
-            }
-            return View(AspNetUser);
-        }
-
-        // POST: AspNetUsers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            AspNetUser AspNetUser = bd.AspNetUsers.Find(id);
-            bd.AspNetUsers.Remove(AspNetUser);
-            bd.SaveChanges();
-            return RedirectToAction("Index");
+            return View(donation);
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                bd.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
