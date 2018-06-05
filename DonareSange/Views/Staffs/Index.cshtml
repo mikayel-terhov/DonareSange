@@ -4,7 +4,7 @@
     ViewBag.Title = "Staff Index";
 }
 <h2>Donatori</h2>
-<table class="table">
+<table class="table" id="donors">
     <tr>
         <th>Nume</th>
         <th>Prenume</th>
@@ -51,17 +51,17 @@
     </tr>
     @foreach (var item in Model.Donations)
     {
-    <tr>
-        <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().firstname)</td>
-        <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().lastname)</td>
-        <td>@Html.DisplayFor(modelItem => item.blood_type)</td>
-        <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().DonorCNP)</td>
-        <td>@Html.DisplayFor(modelItem => item.quantity)</td>
-        <td>@Html.DisplayFor(modelItem => item.trombocite)</td>
-        <td>@Html.DisplayFor(modelItem => item.plasma)</td>
-        <td>@Html.DisplayFor(modelItem => item.globule_rosii)</td>
-        <td>@Html.ActionLink("Edit","Edit",new { id = item.DonationId})</td>
-    </tr>
+        <tr>
+            <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().firstname)</td>
+            <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().lastname)</td>
+            <td>@Html.DisplayFor(modelItem => item.blood_type)</td>
+            <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().DonorCNP)</td>
+            <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+            <td>@Html.DisplayFor(modelItem => item.trombocite)</td>
+            <td>@Html.DisplayFor(modelItem => item.plasma)</td>
+            <td>@Html.DisplayFor(modelItem => item.globule_rosii)</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = item.DonationId })</td>
+        </tr>
     }
 </table>
 <br />
@@ -69,14 +69,16 @@
 <br />
 <br />
 <h2>Cereri de sange</h2>
-<table class="table">
+<table class="table" id="bloodRequests">
     <tr>
         <th>Clinica</th>
-        <th>Stare</th>
+        <th>Cantitate</th>
         <th>Trombocite</th>
         <th>Plasma</th>
         <th>Gobule Rosii</th>
         <th>Pacient</th>
+        <th id="sort">Importanta</th>
+        <th>Stare</th>
     </tr>
     @if (Model.BloodRequests.ToArray().Length != 0)
     {
@@ -84,12 +86,52 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => Model.Clinics.Where(x => x.ClinicId == item.ClinicId).SingleOrDefault().name)</td>
-                <td>@Html.DisplayFor(modelItem => item.state)</td>
+                <td>@Html.DisplayFor(modelItem => item.quantity)</td>
                 <td>@Html.DisplayFor(modelItem => item.trombocite)</td>
                 <td>@Html.DisplayFor(modelItem => item.plasma)</td>
                 <td>@Html.DisplayFor(modelItem => item.globule_rosii)</td>
                 <td>@Html.DisplayFor(modelItem => item.PacientCNP)</td>
+                <td>@Html.DisplayFor(modelItem => item.state.Split('-')[0])</td>
+                <td>@Html.DisplayFor(modelItem => item.state.Split('-')[1])</td>
             </tr>
         }
     }
 </table>
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+    var table = $("#bloodRequests");
+    var rows = $("#bloodRequests tr");
+    var array = {"HIGH":2,"MEDIUM":1,"LOW":0}
+    var crescator = false;
+    function sortCol() {
+        var index = $(this)[0].cellIndex;
+        for (var i = 1; i < rows.length - 1; i++) {
+            for (var j = i + 1; j < rows.length; j++) {
+                var col1 = $($(rows[i]).children()[index]).text();
+                var col2 = $($(rows[j]).children()[index]).text();
+                if (!crescator) {
+                    
+                        if (array[col1] < array[col2]) {
+                            aux = $(rows[i]).html();
+                            $(rows[i]).html($(rows[j]).html());
+                            $(rows[j]).html(aux);
+                        }
+                    }
+                
+                else {
+                   
+                        if (array[col1] > array[col2]) {
+                            aux = $(rows[i]).html();
+                            $(rows[i]).html($(rows[j]).html());
+                            $(rows[j]).html(aux);
+                        }
+                    }
+                
+            }
+        }
+        //crescator = !crescator;
+    }
+    $("#sort").on("click", sortCol);
+</script>
+

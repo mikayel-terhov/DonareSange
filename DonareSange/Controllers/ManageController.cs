@@ -95,18 +95,16 @@ namespace DonareSange.Controllers
                     {
                         if (pd.DonorId == donorPersonalDetail.DonorId)
                         {
-             
-
                             db.Entry(pd).State = System.Data.Entity.EntityState.Modified;
                             pd.DonorCNP = donorPersonalDetail.DonorCNP;
                             pd.firstname = donorPersonalDetail.firstname;
                             pd.lastname = donorPersonalDetail.lastname;
                             pd.sex = donorPersonalDetail.sex;
                             db.SaveChanges();
-                        var userId = User.Identity.GetUserId();
-                        ViewData["type"] = UserManager.FindByEmail(pd.email).UserType;
-                        ViewData["Id"] = UserManager.FindByEmail(pd.email).Id;
-                        return RedirectToAction("Index");
+                            var userId = User.Identity.GetUserId();
+                            ViewData["type"] = UserManager.FindByEmail(pd.email).UserType;
+                            ViewData["Id"] = UserManager.FindByEmail(pd.email).Id;
+                            return RedirectToAction("Index");
                         }
                     }
                     //return RedirectToAction("Index");
