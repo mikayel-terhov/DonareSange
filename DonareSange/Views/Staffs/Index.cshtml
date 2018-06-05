@@ -1,0 +1,95 @@
+﻿@model DonareSange.Models.AdditionalModelViewsA.StaffMemberViewModel
+
+@{
+    ViewBag.Title = "Staff Index";
+}
+<h2>Donatori</h2>
+<table class="table">
+    <tr>
+        <th>Nume</th>
+        <th>Prenume</th>
+        <th>Sex</th>
+        <th>Activ</th>
+        <th>CNP</th>
+        <th>Email</th>
+    </tr>
+    @foreach (var item in Model.Donors)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.firstname)</td>
+            <td>@Html.DisplayFor(modelItem => item.lastname)</td>
+            <td>@Html.DisplayFor(modelItem => item.sex)</td>
+            @if (item.isActive == true)
+            {
+                <td>Da</td>
+            }
+            else
+            {
+                <td>Nu</td>
+            }
+            <td>@Html.DisplayFor(modelItem => item.DonorCNP)</td>
+            <td>@Html.DisplayFor(modelItem => item.email)</td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+<br />
+<h2>Donatii</h2>
+<table class="table">
+    <tr>
+        <th>Nume</th>
+        <th>Prenume</th>
+        <th>Sange</th>
+        <th>CNP</th>
+        <th>Cantitate</th>
+        <th>Trombocite</th>
+        <th>Plasma</th>
+        <th>Globule Rosii</th>
+        <th>Editeaza</th>
+
+    </tr>
+    @foreach (var item in Model.Donations)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().firstname)</td>
+        <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().lastname)</td>
+        <td>@Html.DisplayFor(modelItem => item.blood_type)</td>
+        <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().DonorCNP)</td>
+        <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+        <td>@Html.DisplayFor(modelItem => item.trombocite)</td>
+        <td>@Html.DisplayFor(modelItem => item.plasma)</td>
+        <td>@Html.DisplayFor(modelItem => item.globule_rosii)</td>
+        <td>@Html.ActionLink("Edit","Edit",new { id = item.DonationId})</td>
+    </tr>
+    }
+</table>
+<br />
+<br />
+<br />
+<br />
+<h2>Cereri de sange</h2>
+<table class="table">
+    <tr>
+        <th>Clinica</th>
+        <th>Stare</th>
+        <th>Trombocite</th>
+        <th>Plasma</th>
+        <th>Gobule Rosii</th>
+        <th>Pacient</th>
+    </tr>
+    @if (Model.BloodRequests.ToArray().Length != 0)
+    {
+        foreach (var item in Model.BloodRequests)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => Model.Clinics.Where(x => x.ClinicId == item.ClinicId).SingleOrDefault().name)</td>
+                <td>@Html.DisplayFor(modelItem => item.state)</td>
+                <td>@Html.DisplayFor(modelItem => item.trombocite)</td>
+                <td>@Html.DisplayFor(modelItem => item.plasma)</td>
+                <td>@Html.DisplayFor(modelItem => item.globule_rosii)</td>
+                <td>@Html.DisplayFor(modelItem => item.PacientCNP)</td>
+            </tr>
+        }
+    }
+</table>

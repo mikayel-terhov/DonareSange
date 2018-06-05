@@ -104,8 +104,8 @@ namespace DonareSange.Controllers
                             pd.sex = donorPersonalDetail.sex;
                             db.SaveChanges();
                         var userId = User.Identity.GetUserId();
-                        ViewData["type"] = UserManager.FindByEmail(pd.DonorId).UserType;
-                        ViewData["Id"] = UserManager.FindByEmail(pd.DonorId).Id;
+                        ViewData["type"] = UserManager.FindByEmail(pd.email).UserType;
+                        ViewData["Id"] = UserManager.FindByEmail(pd.email).Id;
                         return RedirectToAction("Index");
                         }
                     }
