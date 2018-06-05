@@ -1,12 +1,17 @@
 ﻿@model IEnumerable<DonareSange.Models.Donation>
 
 
-
-@{
-    ViewBag.Title = "Donatiile mele";
+@if (Convert.ToString(Session["type"]) == "DONOR")
+{
+    <h2>Dona&#355iile mele</h2>
+    <br><br>
 }
 
-<h2>@ViewBag.Title</h2>
+@if (Convert.ToString(Session["type"]) == "DOCTOR")
+{
+        <h2>Dona&#355iile de s&#226nge</h2>
+    <br><br>
+}
 
 <table class="table">
     <tr>
@@ -73,7 +78,7 @@
                     @Html.DisplayFor(modelItem => item.Centre.name)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) }) |
+                    @Html.ActionLink("Detalii", "Details", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) }) |
                 </td>
             </tr>
         }
@@ -123,7 +128,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.DonationId }) |
                     @Html.ActionLink("Details", "Details", new { id = item.DonationId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId })
                 </td>
             </tr>
         }
