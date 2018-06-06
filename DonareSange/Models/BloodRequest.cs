@@ -15,8 +15,8 @@ namespace DonareSange.Models
     public partial class BloodRequest
     {
         public int BloodRequestId { get; set; }
-        public int ClinicId { get; set; }
-        public int CentreId { get; set; }
+        public Nullable<int> ClinicId { get; set; }
+        public Nullable<int> CentreId { get; set; }
         public string state { get; set; }
         public Nullable<double> trombocite { get; set; }
         public Nullable<double> plasma { get; set; }

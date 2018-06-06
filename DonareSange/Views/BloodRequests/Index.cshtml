@@ -1,15 +1,17 @@
 ﻿@model IEnumerable<DonareSange.Models.BloodRequest>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cereri de sange";
 }
 
-<h2>Index</h2>
-<p>Convert.ToString(Session["type"])</p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<br>
+<div>
+    <p><a href="@Url.Action("Create", "BloodRequests")" class="btn btn-primary btn-lg" style="background-color:red">Cere sange</a></p>
+</div>
+<br>
+
 <table class="table">
     <tr>
         <th>
@@ -68,8 +70,8 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.BloodRequestId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BloodRequestId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BloodRequestId })
+                @Html.ActionLink("Detalii", "Detalii", new { id = item.BloodRequestId }) |
+                @Html.ActionLink("Sterge", "Sterge", new { id = item.BloodRequestId })
             </td>
         </tr>
     }

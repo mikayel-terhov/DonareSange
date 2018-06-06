@@ -14,6 +14,10 @@ namespace DonareSange.Models
     
     public partial class Donation
     {
+        public Donation()
+        {
+        }
+
         public int DonationId { get; set; }
         public string DonorId { get; set; }
         public int CentreId { get; set; }

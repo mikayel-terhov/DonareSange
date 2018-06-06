@@ -17,8 +17,6 @@ namespace DonareSange.Models
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-
-            userIdentity.AddClaim(new Claim("UserType",this.UserType.ToString()));
             // Add custom user claims here
             return userIdentity;
         }
@@ -35,19 +33,5 @@ namespace DonareSange.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<DonareSange.Models.RegisterViewModel> RegisterViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<DonareSange.Models.AdditionalModelViewsA.ClinicViewModelAdmin> ClinicViewModelAdmins { get; set; }
-
-        //public System.Data.Entity.DbSet<DonareSange.Models.AdditionalModelViewsA.ClinicViewModelAdmin> ClinicViewModelAdmins { get; set; }
-
-
-
-        //public System.Data.Entity.DbSet<DonareSange.Models.ApplicationUser> ApplicationUsers { get; set; }
-
-        //public System.Data.Entity.DbSet<DonareSange.Models.AdditionalModelViewsA.ExtendedUserDTO> ExtendedUserDTOes { get; set; }
-
-        //public System.Data.Entity.DbSet<DonareSange.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

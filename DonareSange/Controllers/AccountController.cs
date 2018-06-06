@@ -239,6 +239,7 @@ namespace DonareSange.Controllers
 
                     return RedirectToAction("Index", "Account");
                 }
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form

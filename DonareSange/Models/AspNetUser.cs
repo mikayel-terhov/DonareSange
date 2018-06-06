@@ -9,15 +9,16 @@
 
 namespace DonareSange.Models
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
-    
-    public partial class AspNetUser
+   
+    public partial class AspNetUser : IdentityUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetUser()
         {
-            this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
+            //this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Donations = new HashSet<Donation>();
             this.DonorPersonalDetails = new HashSet<DonorPersonalDetail>();
