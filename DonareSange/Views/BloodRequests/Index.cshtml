@@ -4,12 +4,14 @@
     ViewBag.Title = "Cereri de sange";
 }
 
-<h2> </h2>
-<p>@Convert.ToString(Session["type"])</p>
 
-<p>
-    @Html.ActionLink("Cere sange!", "Create")
-</p>
+
+<br>
+<div>
+    <p><a href="@Url.Action("Create", "BloodRequests")" class="btn btn-primary btn-lg" style="background-color:red">Cere sange</a></p>
+</div>
+<br>
+
 <table class="table">
     <tr>
         <th>

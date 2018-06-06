@@ -31,7 +31,7 @@
 
         <div class="col-md-10">
 
-            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "datefield", type = "datetime-local" } })
+            @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "datefield", type = "date" } })
             @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
 
 
@@ -58,7 +58,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Add" class="btn btn-primary" />
+            <input type="submit" value="Add" class="btn btn-primary" style="background-color:red" />
 
         </div>
     </div>
@@ -68,7 +68,7 @@
 
 
 <div>
-    <p><a class="btn btn-primary" href="@Url.Action( "Index", "Donors")" >Back</a></p>
+    <p><a class="btn btn-primary" style="background-color:red" href="@Url.Action( "Index", "Donors")" >Back</a></p>
 </div>
 
 @section Scripts {

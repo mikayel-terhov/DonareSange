@@ -49,7 +49,7 @@
             <th>Globule Rosii</th>
         </tr>
         @foreach (var item in Model.Donations)
-        {
+        {   
             <tr>
                 <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().firstname)</td>
                 <td>@Html.DisplayFor(modelItem => Model.Donors.Where(x => x.DonorId == item.DonorId).SingleOrDefault().lastname)</td>
