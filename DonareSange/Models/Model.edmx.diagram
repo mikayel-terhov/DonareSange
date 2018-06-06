@@ -6,28 +6,24 @@
     <edmx:Diagrams>
       <Diagram DiagramId="8c9ded003edb448592e789174bf9a528" Name="Diagram1">
         <EntityTypeShape EntityType="BloodDonationModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.Address" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Address" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BloodDonationModel.AspNetRole" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="25.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BloodDonationModel.AspNetUser" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.BloodRequest" Width="1.5" PointX="11.25" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.Centre" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.Clinic" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.BloodRequest" Width="1.5" PointX="8.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Centre" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Clinic" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BloodDonationModel.Doctor" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.Donation" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.Donor" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.DonorPersonalDetail" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.PersonalDetailsDoctor" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.PersonalDetailsStaffMember" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.Staff" Width="1.5" PointX="6" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BloodDonationModel.sysdiagram" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Donation" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Donor" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.DonorPersonalDetail" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.PersonalDetailsDoctor" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.PersonalDetailsStaffMember" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.Staff" Width="1.5" PointX="6" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BloodDonationModel.sysdiagram" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="BloodDonationModel.FK_Centre_Address" ManuallyRouted="false" />
-        <AssociationConnector Association="BloodDonationModel.FK_Clinic_Address" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.0011528461538459" PointY="8.701396484375" />
-          <ConnectorPoint PointX="2.625" PointY="9.0775493305288464" />
-          <ConnectorPoint PointX="2.625" PointY="15.498847153846153" />
-          <ConnectorPoint PointX="3.0011528461538459" PointY="15.875" />
+        <AssociationConnector Association="BloodDonationModel.FK_Clinic_Address" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="BloodDonationModel.FK_DonorPersonalDetails_Address" ManuallyRouted="false" />
         <AssociationConnector Association="BloodDonationModel.FK_DonorPersonalDetails_Address1" ManuallyRouted="false" />

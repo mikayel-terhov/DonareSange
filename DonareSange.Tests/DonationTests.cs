@@ -29,6 +29,7 @@ namespace DonareSange.Models.Tests
                 d.DonorId = ids[i];
                 d.is_able_to_donate = true;
                 d.passedTests = true;
+                d.blood_type = BloodType.Type01.ToString();
                 d.specific_pacient_cnp = null;
                 d.quantity = Convert.ToDouble(i);
                 d.CentreId = i;

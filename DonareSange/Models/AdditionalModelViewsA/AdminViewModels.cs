@@ -8,10 +8,11 @@ namespace DonareSange.Models.AdditionalModelViewsA
 {
     public class ClinicViewModelAdmin
     {
+        public int ClinicViewModelAdminId { get; set; }
         public int ClinicId { get; set; }
-        public string name { get; set; }
-        public string contact { get; set; }
-        public int AdressId { get; set; }
+        public string Name { get; set; }
+        public string Contact { get; set; }
+        public Nullable<int> AddressId { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string StreetName { get; set; }

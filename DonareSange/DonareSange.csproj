@@ -62,6 +62,15 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="NotFoundMvc, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NotFoundMvc.1.5.0\lib\net40\NotFoundMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -211,11 +220,14 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Extensions\IdentityExtentions.cs" />
+    <Compile Include="Extensions\IdentityExtentions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdditionalModelViewsA\AdminViewModels.cs" />
     <Compile Include="Models\AdditionalModelViewsA\AdminViewModels.cs" />
     <Compile Include="Models\AdditionalModelViewsA\DoctorViewModel.cs" />
     <Compile Include="Models\AdditionalModelViewsA\SolveRequestModel.cs" />
@@ -286,6 +298,7 @@
     <Compile Include="Models\Staff.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -519,6 +532,27 @@
     <Content Include="Views\Clinics\Edit.cshtml" />
     <Content Include="Views\Clinics\Index.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Donors\Create.cshtml" />
+    <Content Include="Views\Donors\Delete.cshtml" />
+    <Content Include="Views\Donors\Details.cshtml" />
+    <Content Include="Views\Donors\Edit.cshtml" />
+    <Content Include="Views\Donors\Index.cshtml" />
+    <Content Include="Views\Manage\DonorPersonalDetails.cshtml" />
+    <Content Include="Views\AdminViews\Register.cshtml" />
+    <Content Include="Views\AdminViews\Index.cshtml" />
+    <Content Include="Views\Account\RegisterAdmin.cshtml" />
+    <Content Include="Views\AspNetUsers\Create.cshtml" />
+    <Content Include="Views\AspNetUsers\Delete.cshtml" />
+    <Content Include="Views\AspNetUsers\Details.cshtml" />
+    <Content Include="Views\AspNetUsers\Edit.cshtml" />
+    <Content Include="Views\AspNetUsers\Index.cshtml" />
+    <Content Include="Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\Account\RegisterCreate.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Donors\Create.cshtml" />
     <Content Include="Views\Donors\Delete.cshtml" />
     <Content Include="Views\Donors\Details.cshtml" />
