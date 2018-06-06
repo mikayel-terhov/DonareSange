@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DonareSange.Models;
+using static System.Net.WebRequestMethods;
+using System.Collections.Generic;
 
 namespace DonareSange.Controllers
 {
@@ -51,7 +53,7 @@ namespace DonareSange.Controllers
                 _userManager = value;
             }
         }
-
+        
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -76,9 +78,15 @@ namespace DonareSange.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = UserManager.FindByEmail(model.Email);
+
             switch (result)
             {
                 case SignInStatus.Success:
+                    //SESSION VARIABLES
+                    Session["type"] = user.UserType.ToString();
+                    Session["token"] = user.Id;
+                    //return RedirectToUserHome(returnUrl, user.UserType,user.Id);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -153,16 +161,34 @@ namespace DonareSange.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType.ToString()};
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    Session["type"] = user.UserType;
+                    Session["token"] = user.Id;
+                    var db = new BloodDonationEntities2();
+                    var users = db.AspNetUsers;
+                    string id = "";
+                    foreach (AspNetUser u in users)
+                    {
+                        if (u.Email == model.Email)
+                        {
+                            id = u.Id;
+                            model.Id = u.Id;
+                        }
+                    }
+                    if (model.UserType == UserTypes.DONOR)
+                    {
+                        var personalDetails = new DonorPersonalDetail
+                        {
+                            DonorId = id,
+                            email = model.Email
+                        };
+                        db.DonorPersonalDetails.Add(personalDetails);
+                        db.SaveChanges();
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -171,6 +197,57 @@ namespace DonareSange.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterAdmin(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType.ToString() };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                Session["type"] = user.UserType;
+                Session["token"] = user.Id;
+                var db = new BloodDonationEntities2();
+                var users = db.AspNetUsers;
+                string id = "";
+                foreach (AspNetUser u in users)
+                {
+                    if (u.Email == model.Email)
+                    {
+                        id = u.Id;
+                    }
+                }
+                if (model.UserType == UserTypes.DONOR)
+                {
+                    var personalDetails = new DonorPersonalDetail
+                    {
+                        DonorId = id,
+                        email = model.Email
+                    };
+                    db.DonorPersonalDetails.Add(personalDetails);
+                    db.SaveChanges();
+                }
+                
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+
+                    return RedirectToAction("Index", "Account");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
+
+
 
         //
         // GET: /Account/ConfirmEmail
@@ -384,14 +461,39 @@ namespace DonareSange.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<string> elements)
+        {
+            // Create an empty list to hold result of the operation
+            var selectList = new List<SelectListItem>();
 
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            // This will result in MVC rendering each item as:
+            //     <option value="State Name">State Name</option>
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element,
+                    Text = element
+                });
+            }
+
+            return selectList;
+        }
         //
+        private List<ApplicationUser> GetUsers()
+        {
+            return new ApplicationDbContext().Users.ToList();
+        }
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.RemoveAll();
             return RedirectToAction("Index", "Home");
         }
 
@@ -450,6 +552,11 @@ namespace DonareSange.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private ActionResult RedirectToUserHome(string returnUrl, string userType, string id)
+        {
+            return RedirectToAction("Index", "Home", new { type = userType, token = id });
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

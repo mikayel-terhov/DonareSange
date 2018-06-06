@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<DonareSange.Models.Donation>
 
+
+
 @{
     ViewBag.Title = "Index";
 }
@@ -21,15 +23,6 @@
             @Html.DisplayNameFor(model => model.quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.trombocite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.plasma)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.globule_rosii)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </th>
         <th>
@@ -38,38 +31,105 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.passedTests)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trombocite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.plasma)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.globule_rosii)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Centre.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DonationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DonationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DonationId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        if (Convert.ToString(Session["type"]) == "DONOR" && item.AspNetUser.Id == Convert.ToString(Session["token"]))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) })
+                </td>
+            </tr>
+        }
+        else if (Convert.ToString(Session["type"]) == "DOCTOR")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId, type = Convert.ToString(Session["type"]), token = Convert.ToString(Session["token"]) }) |
+                </td>
+            </tr>
+        }
+        else if (Convert.ToString(Session["type"]) == "STAFF")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationId }) |
+
+                </td>
+            </tr>
+        }
+        else if (Convert.ToString(Session["type"]) == "ADMIN")
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.passedTests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Centre.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DonationId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationId }) 
+                </td>
+            </tr>
+        }
+    }
 
 </table>

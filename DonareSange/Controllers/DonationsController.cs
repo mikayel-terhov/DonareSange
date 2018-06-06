@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using DonareSange.Models;
 
 namespace DonareSange.Controllers
-{
+{   
     public class DonationsController : Controller
     {
         private BloodDonationEntities2 db = new BloodDonationEntities2();

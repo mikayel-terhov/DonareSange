@@ -9,4 +9,5 @@ namespace DonareSange.Models
     {
         ADMIN,DONOR,DOCTOR,STAFF
     }
+
 }

@@ -85,6 +85,7 @@ namespace DonareSange.Models
         [Display(Name ="Type")]
         public UserTypes UserType { get; set; }
 
+        public string Id { get; set; }
     }
 
     public class ResetPasswordViewModel
